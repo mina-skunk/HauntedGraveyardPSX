@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "grumpycoders.psx-dev",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "ms-vscode.makefile-tools",
+    "webfreak.debug"
+  ]
+}
