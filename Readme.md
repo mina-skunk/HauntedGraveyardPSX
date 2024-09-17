@@ -77,3 +77,20 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
   2. Options
      - Replay
      - Main Menu
+
+## Credits / assets to use
+
+- [Modern UI](https://limezu.itch.io/modernuserinterface) by [LimeZu](https://limezu.itch.io/)
+  - Playstation buttons
+  - Textbox
+- [Modern exteriors](https://limezu.itch.io/modernexteriors) by [LimeZu](https://limezu.itch.io/)
+  - Graveyard tiles
+- [Fungus Cave](https://limezu.itch.io/fungus-cave) by [LimeZu](https://limezu.itch.io/)
+  - tiles (for undergroiund/the crypt)
+- Music ???
+- Developer, Mina (me)
+
+## Convert Assets
+
+`cd .\tools\png2header\`
+`node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`
