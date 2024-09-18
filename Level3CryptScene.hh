@@ -18,8 +18,7 @@ namespace HauntedGraveyard {
       void teardown(Scene::TearDownReason reason) override;
 
     public:
-      psyqo::Font<> *font;
-      psyqo::SimplePad *input;
+
     private:
       HauntedGraveyard::graphics::TileMap tile_layer_0;
       HauntedGraveyard::graphics::TileMap tile_layer_1;

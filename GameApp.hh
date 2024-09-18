@@ -15,8 +15,8 @@ namespace HauntedGraveyard {
       void createScene() override;
 
     public:
-      psyqo::Font<> font;
-      psyqo::SimplePad input;
+      static psyqo::Font<> font;
+      static psyqo::SimplePad input;
       SplashScene first_scene;
 
     private:

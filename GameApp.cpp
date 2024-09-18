@@ -1,5 +1,8 @@
 #include "GameApp.hh"
 
+psyqo::Font<> HauntedGraveyard::GameApp::font;
+psyqo::SimplePad HauntedGraveyard::GameApp::input;
+
 void HauntedGraveyard::GameApp::prepare() {
     psyqo::GPU::Configuration config;
     config.set(psyqo::GPU::Resolution::W320)
@@ -11,12 +14,10 @@ void HauntedGraveyard::GameApp::prepare() {
 
 void HauntedGraveyard::GameApp::createScene() {
     if (!initialized) {
-        font.uploadSystemFont(gpu());
-        input.initialize();
+        HauntedGraveyard::GameApp::font.uploadSystemFont(gpu());
+        HauntedGraveyard::GameApp::input.initialize();
         initialized = true;
     }
 
-    first_scene.font = &font;
-    first_scene.input = &input;
     pushScene(&first_scene);
 }

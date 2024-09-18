@@ -18,7 +18,7 @@ namespace HauntedGraveyard {
      */
     class TileMap : public HauntedGraveyard::graphics::Spatial2D  {
       public:
-        TileMap(uint8_t width_, uint8_t height_, uint8_t * data_);
+
       private:
         uint8_t width, height;
         uint8_t * data;

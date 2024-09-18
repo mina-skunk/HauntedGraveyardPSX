@@ -1,8 +1,10 @@
 #include "psyqo/primitives/common.hh"
 #include "SplashScene.hh"
-#include "splash.h"
+#include "GameApp.hh"
 
 void HauntedGraveyard::SplashScene::start(Scene::StartReason reason) {
+    // texture.width = splash_tex_WIDTH;
+    // texture.width = splash_tex_HEIGHT;
     psyqo::Rect region = {.pos = {{.x = 512, .y = 0}}, .size = {{.w = splash_tex_WIDTH, .h = splash_tex_HEIGHT}}};
     gpu().uploadToVRAM(splash_tex, region);
 
@@ -14,10 +16,10 @@ void HauntedGraveyard::SplashScene::start(Scene::StartReason reason) {
     logo_sprite.texInfo = { .u = 0, .v = 0 };
 
     // setup input
-    input->setOnEvent([this](const psyqo::SimplePad::Event& event) {
+    HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
         // skip
         if (event.type == psyqo::SimplePad::Event::ButtonPressed && event.button == psyqo::SimplePad::Triangle) {
-            to_next_scene();
+            pushScene(&next_scene);
         }
     });
 }
@@ -33,7 +35,7 @@ void HauntedGraveyard::SplashScene::frame() {
     }
     frame_counter ++;
     if (frame_counter >= 0xFF) {
-        to_next_scene();
+        pushScene(&next_scene);
     }
     
 
@@ -45,11 +47,5 @@ void HauntedGraveyard::SplashScene::frame() {
 
 void HauntedGraveyard::SplashScene::teardown(Scene::TearDownReason reason) {
     // clear input
-    input->setOnEvent(nullptr);
-}
-
-void HauntedGraveyard::SplashScene::to_next_scene() {
-    next_scene.font = font;
-    next_scene.input = input;
-    pushScene(&next_scene);
+    HauntedGraveyard::GameApp::input.setOnEvent(nullptr);
 }

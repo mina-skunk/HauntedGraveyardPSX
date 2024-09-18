@@ -3,6 +3,8 @@
 #include "psyqo/scene.hh"
 #include "psyqo/font.hh"
 #include "psyqo/simplepad.hh"
+#include "graphics/UI/Button.hh"
+// #include "Level1EntranceScene.hh"
 
 namespace HauntedGraveyard {
   /**
@@ -14,9 +16,11 @@ namespace HauntedGraveyard {
       void teardown(Scene::TearDownReason reason) override;
 
     public:
-      psyqo::Font<> *font;
-      psyqo::SimplePad *input;
+
     private:
-      // TODO
+      // HauntedGraveyard::Level1EntranceScene next_scene;
+      uint8_t selected = 0;
+      HauntedGraveyard::graphics::UI::Button start_button;
+      HauntedGraveyard::graphics::UI::Button instructions_button;
   };
 }

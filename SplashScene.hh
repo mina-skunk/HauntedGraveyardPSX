@@ -4,6 +4,8 @@
 #include "psyqo/font.hh"
 #include "psyqo/simplepad.hh"
 #include "TitleScene.hh"
+#include "graphics/Texture.hh"
+#include "splash.h"
 
 namespace HauntedGraveyard {
   /*
@@ -15,13 +17,12 @@ namespace HauntedGraveyard {
       void teardown(Scene::TearDownReason reason) override;
 
     public:
-      psyqo::Font<> *font;
-      psyqo::SimplePad *input;
+
     private:
+      HauntedGraveyard::graphics::Texture texture;
       psyqo::Prim::TPage logo_tex_page;
       psyqo::Prim::Sprite logo_sprite;
       unsigned char frame_counter = 0;
       TitleScene next_scene;
-      void to_next_scene();
   };
 }
