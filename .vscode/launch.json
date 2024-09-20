@@ -17,10 +17,10 @@
       "osx": {
         "gdbpath": "gdb"
       },
-      "executable": "${workspaceRoot}/${workspaceRootFolderName}.elf",
+      "executable": "${workspaceRoot}/HauntedGraveyard.elf",
       "autorun": [
         "monitor reset shellhalt",
-        "load ${workspaceRootFolderName}.elf",
+        "load HauntedGraveyard.elf",
         "tbreak main",
         "continue"
       ]

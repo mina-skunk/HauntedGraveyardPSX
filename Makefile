@@ -9,6 +9,7 @@ system/Sound.cpp \
 system/SimpleCDAudio.cpp \
 graphics/Render2D.cpp \
 graphics/Camera2D.cpp \
+graphics/UI/Button.cpp \
 SplashScene.cpp \
 TitleScene.cpp \
 GameApp.cpp \

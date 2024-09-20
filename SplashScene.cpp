@@ -3,8 +3,6 @@
 #include "GameApp.hh"
 
 void HauntedGraveyard::SplashScene::start(Scene::StartReason reason) {
-    // texture.width = splash_tex_WIDTH;
-    // texture.width = splash_tex_HEIGHT;
     psyqo::Rect region = {.pos = {{.x = 512, .y = 0}}, .size = {{.w = splash_tex_WIDTH, .h = splash_tex_HEIGHT}}};
     gpu().uploadToVRAM(splash_tex, region);
 

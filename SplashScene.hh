@@ -4,7 +4,6 @@
 #include "psyqo/font.hh"
 #include "psyqo/simplepad.hh"
 #include "TitleScene.hh"
-#include "graphics/Texture.hh"
 #include "splash.h"
 
 namespace HauntedGraveyard {
@@ -19,7 +18,6 @@ namespace HauntedGraveyard {
     public:
 
     private:
-      HauntedGraveyard::graphics::Texture texture;
       psyqo::Prim::TPage logo_tex_page;
       psyqo::Prim::Sprite logo_sprite;
       unsigned char frame_counter = 0;

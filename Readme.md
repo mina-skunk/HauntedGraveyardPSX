@@ -92,5 +92,7 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 
 ## Convert Assets
 
-`cd .\tools\png2header\`
-`node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`
+`cd .\tools\png2header\`  
+`npm i`  
+`node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`  
+`node .\index.js ..\..\resources\UI.png ui_tex ..\..\ui.h`  
