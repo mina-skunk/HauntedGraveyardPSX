@@ -8,6 +8,7 @@ namespace HauntedGraveyard {
       class Element {
         public:
           psyqo::Vertex position;
+          Element(psyqo::Vertex position) : position(position) {}
       };
     }
   }

@@ -13,7 +13,8 @@ namespace HauntedGraveyard {
         public:
           const char* text;
           bool selected;
-          void draw_button(psyqo::GPU gpu, psyqo::Font<> *font);
+          Button(psyqo::Vertex position, const char* text, bool selected) : Element(position), text(text), selected(selected) {}
+          void draw_button(psyqo::GPU *gpu, psyqo::Font<> *font);
         private:
           psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 12> fragment;
       };

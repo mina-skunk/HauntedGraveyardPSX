@@ -2,19 +2,22 @@
 #include "Button.hh"
 #include "psyqo/primitives/control.hh"
 
-void HauntedGraveyard::graphics::UI::Button::draw_button(psyqo::GPU gpu, psyqo::Font<> *font) {
+void HauntedGraveyard::graphics::UI::Button::draw_button(psyqo::GPU *gpu, psyqo::Font<> *font) {
     // set tex page
     psyqo::Prim::TPage ui_text_page;
     ui_text_page.attr.setPageX(12).setPageY(0).set(psyqo::Prim::TPageAttr::Tex16Bits);
-    gpu.sendPrimitive(ui_text_page);
+    gpu->sendPrimitive(ui_text_page);
 
     // tex
     uint8_t index = 0;
     for (uint8_t y = 0; y < 3; y++) {
       for (uint8_t x = 0; x < 4; x++) {
+        fragment.primitives[index].setColor({.r=255, .g=255, .b=255});
         // positions
-        fragment.primitives[index].position.x = position.x + (16 * x);
-        fragment.primitives[index].position.y = position.y + (16 * y);
+        int16_t base_x = position.x;
+        int16_t base_y = position.y;
+        fragment.primitives[index].position.x = base_x + (16 * x);
+        fragment.primitives[index].position.y = base_y + (16 * y);
         // UVs
         if (x + y == 0) {
             fragment.primitives[index].texInfo.u = 0 + (selected * 48);
@@ -42,7 +45,7 @@ void HauntedGraveyard::graphics::UI::Button::draw_button(psyqo::GPU gpu, psyqo::
       }
     }
     fragment.count = 12;
-    // gpu.sendFragment(fragment);
+    gpu->sendFragment(fragment);
 
     // // text
     int16_t text_x = position.x + 4;

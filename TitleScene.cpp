@@ -38,8 +38,8 @@ void HauntedGraveyard::TitleScene::frame() {
   // title
   HauntedGraveyard::GameApp::font.print(gpu(), "TitleScene", {{.x = 128, .y = 64}}, {{.r=255, .g=255, .b=255}});
   // buttons
-  start_button.draw_button(gpu(), &HauntedGraveyard::GameApp::font);
-  instructions_button.draw_button(gpu(), &HauntedGraveyard::GameApp::font);
+  start_button.draw_button(&gpu(), &HauntedGraveyard::GameApp::font);
+  instructions_button.draw_button(&gpu(), &HauntedGraveyard::GameApp::font);
   // TODO
 }
 
