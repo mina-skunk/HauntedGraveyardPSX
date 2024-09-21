@@ -1,3 +1,4 @@
+#include "graphics/UI/RenderUI.hh"
 #include "GameApp.hh"
 
 psyqo::Font<> HauntedGraveyard::GameApp::font;
@@ -16,6 +17,7 @@ void HauntedGraveyard::GameApp::createScene() {
     if (!initialized) {
         HauntedGraveyard::GameApp::font.uploadSystemFont(gpu());
         HauntedGraveyard::GameApp::input.initialize();
+        HauntedGraveyard::graphics::UI::RenderUI::init(&gpu(), &HauntedGraveyard::GameApp::font);
         initialized = true;
     }
 

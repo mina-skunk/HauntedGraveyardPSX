@@ -2,16 +2,12 @@
 #include "Button.hh"
 #include "psyqo/primitives/control.hh"
 
-void HauntedGraveyard::graphics::UI::Button::draw_button(psyqo::GPU *gpu, psyqo::Font<> *font) {
-    // set tex page
-    psyqo::Prim::TPage ui_text_page;
-    ui_text_page.attr.setPageX(12).setPageY(0).set(psyqo::Prim::TPageAttr::Tex16Bits);
-    gpu->sendPrimitive(ui_text_page);
+#define BUTTON_WIDTH 8
 
-    // tex
+psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 24> *HauntedGraveyard::graphics::UI::Button::get_fragment() {
     uint8_t index = 0;
     for (uint8_t y = 0; y < 3; y++) {
-      for (uint8_t x = 0; x < 4; x++) {
+      for (uint8_t x = 0; x < BUTTON_WIDTH; x++) {
         fragment.primitives[index].setColor({.r=255, .g=255, .b=255});
         // positions
         int16_t base_x = position.x;
@@ -19,36 +15,37 @@ void HauntedGraveyard::graphics::UI::Button::draw_button(psyqo::GPU *gpu, psyqo:
         fragment.primitives[index].position.x = base_x + (16 * x);
         fragment.primitives[index].position.y = base_y + (16 * y);
         // UVs
-        if (x + y == 0) {
+        if (x + y == 0) { // top left
             fragment.primitives[index].texInfo.u = 0 + (selected * 48);
             fragment.primitives[index].texInfo.v = 0;
-        } else if(x == 0) {
-            fragment.primitives[index].texInfo.u = 16 + (selected * 48);
+        } else if(x == 0 && y == 2) { // bottom left
+            fragment.primitives[index].texInfo.u = 0 + (selected * 48);
+            fragment.primitives[index].texInfo.v = 32;
+        } else if(y == 0 && x == BUTTON_WIDTH - 1) { // top right
+            fragment.primitives[index].texInfo.u = 32 + (selected * 48);
             fragment.primitives[index].texInfo.v = 0;
-        } else if(y == 0) {
+        } else if(x == 0) { // left
             fragment.primitives[index].texInfo.u = 0 + (selected * 48);
             fragment.primitives[index].texInfo.v = 16;
-        } else if(x + y == 5) {
+        } else if(y == 0) { // top
+            fragment.primitives[index].texInfo.u = 16 + (selected * 48);
+            fragment.primitives[index].texInfo.v = 0;
+        } else if(x + y == BUTTON_WIDTH + 1) { // bottom right
             fragment.primitives[index].texInfo.u = 32 + (selected * 48);
             fragment.primitives[index].texInfo.v = 32;
-        } else if(x == 3) {
+        } else if(x == BUTTON_WIDTH - 1) { // right 
             fragment.primitives[index].texInfo.u = 32 + (selected * 48);
             fragment.primitives[index].texInfo.v = 16;
-        } else if(y == 2) {
+        } else if(y == 2) { // bottom
             fragment.primitives[index].texInfo.u = 16 + (selected * 48);
             fragment.primitives[index].texInfo.v = 32;
-        } else {
+        } else { // fill
             fragment.primitives[index].texInfo.u = 16 + (selected * 48);
             fragment.primitives[index].texInfo.v = 16;
         }
         index++;
       }
     }
-    fragment.count = 12;
-    gpu->sendFragment(fragment);
-
-    // // text
-    int16_t text_x = position.x + 4;
-    int16_t text_y = position.y + 4;
-    // font->print(gpu, text, {{.x = text_x, .y = text_y}}, {{.r=255, .g=255, .b=255}});
+    fragment.count = 24;
+    return &fragment;
 }

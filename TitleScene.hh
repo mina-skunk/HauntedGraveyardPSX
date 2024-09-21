@@ -1,5 +1,6 @@
 #pragma once
 
+#include "graphics/UI/Image.hh"
 #include "psyqo/primitives/common.hh"
 #include "psyqo/scene.hh"
 #include "psyqo/font.hh"
@@ -13,18 +14,6 @@ namespace HauntedGraveyard {
    */
   class TitleScene final : public psyqo::Scene {
 
-    // class StartButton final : public HauntedGraveyard::graphics::UI::Button {
-    //   psyqo::Vertex position = { .x = 32, .y = 128 };
-    //   const char* text = "Start";
-    //   bool selected = true;
-    // };
-
-    // class InstructionsButton final : public HauntedGraveyard::graphics::UI::Button {
-    //   psyqo::Vertex position = { .x = 64, .y = 256 };
-    //   const char* text = "Instructions";
-    //   bool selected = false;
-    // };
-
       void start(Scene::StartReason reason) override;
       void frame() override;
       void teardown(Scene::TearDownReason reason) override;
@@ -33,8 +22,10 @@ namespace HauntedGraveyard {
 
     private:
       // HauntedGraveyard::Level1EntranceScene next_scene;
+      HauntedGraveyard::graphics::UI::Image title = { { .x = 32, .y = 16 }, { .w = 256, .h = 128 }, { .col = 8, .row = 0 }};
       uint8_t selected = 0;
-      HauntedGraveyard::graphics::UI::Button start_button({ 64, 256 }, "Start", true);
-      HauntedGraveyard::graphics::UI::Button instructions_button({ .x = 64, .y = 256 }, "Instructions", false);
+      HauntedGraveyard::graphics::UI::Button start_button = { { .x = 96, .y = 128 }, "Start", true};
+      HauntedGraveyard::graphics::UI::Button instructions_button = { { .x = 96, .y = 160 }, "Instructions", false};
+      bool show_instructions = false;
   };
 }

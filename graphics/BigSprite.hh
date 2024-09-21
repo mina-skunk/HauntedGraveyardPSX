@@ -2,15 +2,15 @@
 
 #include "psyqo/primitives.hh"
 #include "Spatial2D.hh"
+#include "Render2D.hh"
 
-namespace HauntedGraveyard {
-  namespace graphics {
-    /**
-     * Big sprite in 2d space 
-     */
-    class BigSprite : public HauntedGraveyard::graphics::Spatial2D  {
-      private:
-        psyqo::Prim::Sprite primitive;
-    };
-  }
+namespace HauntedGraveyard::graphics {
+  /**
+    * Big sprite in 2d space 
+    */
+  class BigSprite : public HauntedGraveyard::graphics::Spatial2D  {
+    friend class Render2D;
+    private:
+      psyqo::Prim::Sprite primitive;
+  };
 }

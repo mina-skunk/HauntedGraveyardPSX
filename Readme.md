@@ -8,6 +8,8 @@ This is an attempt to make a PSX game sprint for Halloween.
 | Platform | PlayStation (PSX Homebrew)  |
 | Theme    | Halloween                   |
 
+![Haunted Graveyard](/resources/HauntedGraveyard.png "Haunted Graveyard")
+
 ## Overview
 
 Haunted Graveyard is a top-down 2D adventure where players control Alex, a character in a Halloween costume, navigating through three Halloween-themed levels: the Entrance, Graveyard, and Crypt. The objective is to find keys to unlock each successive level while avoiding or outsmarting ghosts.
@@ -96,3 +98,4 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 `npm i`  
 `node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`  
 `node .\index.js ..\..\resources\UI.png ui_tex ..\..\ui.h`  
+`node .\index.js ..\..\resources\HauntedGraveyard.png title_tex ..\..\title.h`  
