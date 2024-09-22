@@ -1,7 +1,5 @@
 #pragma once
 
-#include "psyqo/gpu.hh"
-#include "psyqo/font.hh"
 #include "psyqo/fragments.hh"
 #include "psyqo/primitives.hh"
 #include "RenderUI.hh"

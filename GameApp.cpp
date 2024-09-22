@@ -2,6 +2,7 @@
 #include "GameApp.hh"
 
 psyqo::Font<> HauntedGraveyard::GameApp::font;
+
 psyqo::SimplePad HauntedGraveyard::GameApp::input;
 
 void HauntedGraveyard::GameApp::prepare() {
@@ -21,5 +22,9 @@ void HauntedGraveyard::GameApp::createScene() {
         initialized = true;
     }
 
+#if(BUILD == Debug)
+    pushScene(&debug_scene);
+#else
     pushScene(&first_scene);
+#endif
 }

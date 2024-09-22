@@ -1,8 +1,7 @@
 #pragma once
 
+#include "graphics/Camera2D.hh"
 #include "psyqo/scene.hh"
-#include "psyqo/font.hh"
-#include "psyqo/simplepad.hh"
 #include "graphics/TileMap.hh"
 #include "Player.hh"
 #include "GraveKeeper.hh"
@@ -20,10 +19,11 @@ namespace HauntedGraveyard {
     public:
 
     private:
-      HauntedGraveyard::graphics::TileMap tile_layer_0;
-      HauntedGraveyard::graphics::TileMap tile_layer_1;
-      HauntedGraveyard::Player player;
-      HauntedGraveyard::GraveKeeper grave_keeper;
-      HauntedGraveyard::Ghost ghost_0;
+      HauntedGraveyard::graphics::Camera2D camera;
+      // HauntedGraveyard::graphics::TileMap tile_layer_0;
+      // HauntedGraveyard::graphics::TileMap tile_layer_1;
+      // HauntedGraveyard::Player player;
+      // HauntedGraveyard::GraveKeeper grave_keeper;
+      // HauntedGraveyard::Ghost ghost_0;
   };
 }

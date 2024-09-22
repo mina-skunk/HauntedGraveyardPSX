@@ -13,6 +13,9 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
   psyqo::Vertex ui_tex_region_pos = HauntedGraveyard::graphics::UI::RenderUI::texture_page.get_VRAM_position();
   psyqo::Rect ui_tex_region = {.pos = ui_tex_region_pos, .size = {{.w = 256, .h = 256}}};
   gpu().uploadToVRAM(ui_tex, ui_tex_region);
+
+  cross_button.uv = { .u = 48, .v = 48 };
+
   // setup input
   HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
     if (event.type == psyqo::SimplePad::Event::ButtonPressed) {
@@ -29,7 +32,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
       if (event.button == psyqo::SimplePad::Cross || event.button == psyqo::SimplePad::Start) {
         switch(selected) {
           case 0:
-            // pushScene(next_scene);
+            pushScene(&next_scene);
             break;
           case 1:
             show_instructions = true;
@@ -54,15 +57,29 @@ void HauntedGraveyard::TitleScene::frame() {
       break;
   }
   // background
-  gpu().clear({{ .r=0x8a, .g=0x84, .b=0x78 }});
+  gpu().clear({{ .r=0x40, .g=0x3d, .b=0x37 }});
   // title
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&title);
   // buttons
   HauntedGraveyard::graphics::UI::RenderUI::draw_button(&start_button);
   HauntedGraveyard::graphics::UI::RenderUI::draw_button(&instructions_button);
   // instructions
-  if (show_instructions) {
-    // TODO
+  if (show_instructions) { // animate cross button
+    if (frame_counter < 10) {
+      cross_button.uv = { .u = 48, .v = 48 };
+    } else if (frame_counter < 20) {
+      cross_button.uv = { .u = 64, .v = 48 };
+    } else if (frame_counter < 30) {
+      cross_button.uv = { .u = 80, .v = 48 };
+    } else if (frame_counter < 40) {
+      cross_button.uv = { .u = 64, .v = 48 };
+    } else {
+      frame_counter = 0;
+    }
+    frame_counter++;
+
+    HauntedGraveyard::graphics::UI::RenderUI::draw_text_box(&instructions);
+    HauntedGraveyard::graphics::UI::RenderUI::draw_image(&cross_button);
   }
 }
 

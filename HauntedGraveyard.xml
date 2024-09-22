@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<iso_project no_xa="0">
+  <track type="data">
+  <identifiers
+			publisher="MinaSkunk"
+			application="HauntedGraveyard"
+		/>
+  <directory_tree>
+			<file name="SYSTEM.CNF" type="data" source="system.cnf" />
+			<file name="GAME_EXE"	type="data" source="HauntedGraveyard.ps-exe" />
+			<dummy sectors="1024"/>
+		</directory_tree>
+  </track>
+  <!--<track type="audio" source="track2.wav" />-->
+</iso_project>

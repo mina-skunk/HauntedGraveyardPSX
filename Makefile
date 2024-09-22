@@ -13,8 +13,10 @@ graphics/TexturePage.cpp \
 graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
 graphics/UI/Image.cpp \
+graphics/UI/TextBox.cpp \
 SplashScene.cpp \
 TitleScene.cpp \
+Level1EntranceScene.cpp \
 GameApp.cpp \
 main.cpp
 

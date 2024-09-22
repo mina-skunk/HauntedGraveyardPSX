@@ -99,3 +99,8 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 `node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`  
 `node .\index.js ..\..\resources\UI.png ui_tex ..\..\ui.h`  
 `node .\index.js ..\..\resources\HauntedGraveyard.png title_tex ..\..\title.h`  
+
+## Publish
+
+`make`
+`mkpsxiso .\HauntedGraveyard.xml`  

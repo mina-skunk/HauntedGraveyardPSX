@@ -1,6 +1,4 @@
-
 #include "Button.hh"
-#include "psyqo/primitives/control.hh"
 
 #define BUTTON_WIDTH 8
 
@@ -8,7 +6,11 @@ psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 24> *HauntedGraveyard:
     uint8_t index = 0;
     for (uint8_t y = 0; y < 3; y++) {
       for (uint8_t x = 0; x < BUTTON_WIDTH; x++) {
-        fragment.primitives[index].setColor({.r=255, .g=255, .b=255});
+        if (selected) {
+            fragment.primitives[index].setColor({.r=0x80, .g=0x80, .b=0x80});
+        } else {
+            fragment.primitives[index].setColor({.r=255, .g=255, .b=255});
+        }
         // positions
         int16_t base_x = position.x;
         int16_t base_y = position.y;
