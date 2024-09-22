@@ -32,6 +32,12 @@
       "group": {
         "kind": "build"
       }
+    },
+    {
+      "label": "Make ISO",
+      "type": "shell",
+      "command": "mkpsxiso -y ./HauntedGraveyard.xml",
+      "problemMatcher": []
     }
   ]
 }
