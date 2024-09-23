@@ -9,5 +9,6 @@ namespace HauntedGraveyard::graphics {
   class Spatial2D  {
     public:
       psyqo::Vec2 position;
+      Spatial2D(psyqo::Vec2 position) : position(position) {}
   };
 }

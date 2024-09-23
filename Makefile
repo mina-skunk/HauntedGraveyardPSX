@@ -9,11 +9,13 @@ system/Sound.cpp \
 system/SimpleCDAudio.cpp \
 graphics/Render2D.cpp \
 graphics/Camera2D.cpp \
+graphics/Sprite.cpp \
 graphics/TexturePage.cpp \
 graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
 graphics/UI/Image.cpp \
 graphics/UI/TextBox.cpp \
+Player.cpp \
 SplashScene.cpp \
 TitleScene.cpp \
 Level1EntranceScene.cpp \
