@@ -2,6 +2,7 @@
 #include "TitleScene.hh"
 #include "GameApp.hh"
 #include "psyqo/primitives/common.hh"
+#include "system/SimpleCDAudio.hh"
 #include "title.h"
 #include "ui.h"
 
@@ -42,6 +43,11 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
     }
 
   });
+
+#ifndef NO_CD
+  HauntedGraveyard::system::SimpleCDAudio::init();
+  HauntedGraveyard::system::SimpleCDAudio::play(2);
+#endif
 }
 
 void HauntedGraveyard::TitleScene::frame() {

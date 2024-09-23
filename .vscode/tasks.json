@@ -4,10 +4,22 @@
     {
       "label": "Build Debug",
       "type": "shell",
-      "command": "make BUILD=Debug",
+      "command": "make BUILD=Debug NO_CD=true",
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Build Debug CD",
+      "type": "shell",
+      "command": "make BUILD=Debug",
+      "group": {
+        "kind": "build",
+        "isDefault": false
       },
       "problemMatcher": [
         "$gcc"

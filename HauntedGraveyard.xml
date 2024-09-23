@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<iso_project no_xa="1">
+<iso_project cue_sheet="HauntedGraveyard.cue" no_xa="1">
   <track type="data">
-  <identifiers
-			publisher="MinaSkunk"
-			application="HauntedGraveyard"
-		/>
-  <directory_tree>
-			<file name="SYSTEM.CNF" type="data" source="system.cnf" />
-			<file name="GAME.EXE"	type="data" source="HauntedGraveyard.ps-exe" />
-			<dummy sectors="1024"/>
-		</directory_tree>
+    <identifiers
+        publisher="MinaSkunk"
+        application="HauntedGraveyard"
+      />
+    <directory_tree>
+      <file name="SYSTEM.CNF" type="data" source="system.cnf" />
+      <file name="GAME.EXE"	type="data" source="HauntedGraveyard.ps-exe" />
+      <dummy sectors="1024"/>
+    </directory_tree>
   </track>
   <track type="audio" source="audio_tracks/spooky_halloween_cartoon.wav" />
 </iso_project>
