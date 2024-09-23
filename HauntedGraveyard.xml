@@ -12,5 +12,5 @@
 			<dummy sectors="1024"/>
 		</directory_tree>
   </track>
-  <!--<track type="audio" source="track2.wav" />-->
+  <track type="audio" source="audio_tracks/spooky_halloween_cartoon.wav" />
 </iso_project>
