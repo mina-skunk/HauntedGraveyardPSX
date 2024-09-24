@@ -46,7 +46,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
 
 #ifndef NO_CD
   HauntedGraveyard::system::SimpleCDAudio::init();
-  HauntedGraveyard::system::SimpleCDAudio::play(2);
+  HauntedGraveyard::system::SimpleCDAudio::play(TITLE_TRACK);
 #endif
 }
 

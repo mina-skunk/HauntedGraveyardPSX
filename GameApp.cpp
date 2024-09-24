@@ -1,3 +1,4 @@
+#include "graphics/Render2D.hh"
 #include "graphics/UI/RenderUI.hh"
 #include "GameApp.hh"
 
@@ -19,6 +20,7 @@ void HauntedGraveyard::GameApp::createScene() {
         HauntedGraveyard::GameApp::font.uploadSystemFont(gpu());
         HauntedGraveyard::GameApp::input.initialize();
         HauntedGraveyard::graphics::UI::RenderUI::init(&gpu(), &HauntedGraveyard::GameApp::font);
+        HauntedGraveyard::graphics::Render2D::init(&gpu());
         initialized = true;
     }
 

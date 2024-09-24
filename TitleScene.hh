@@ -8,6 +8,8 @@
 #include "graphics/UI/TextBox.hh"
 #include "Level1EntranceScene.hh"
 
+#define TITLE_TRACK 2
+
 namespace HauntedGraveyard {
   /**
    * Shows main menu / title

@@ -23,7 +23,9 @@ GameApp.cpp \
 main.cpp
 
 # Setting the minimum version of the C++. C++-20 is the minimum required version by PSYQo.
-CXXFLAGS = -std=c++20
+CXXFLAGS = -std=c++20 
+
+# CFLAGS = -DNO_CD
 
 # This will activate the PSYQo library and the rest of the toolchain.
 include third_party/nugget/psyqo/psyqo.mk
