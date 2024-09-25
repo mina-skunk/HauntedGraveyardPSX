@@ -8,7 +8,8 @@
 
 void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
   // send title tex to vram
-  psyqo::Rect title_tex_region = {.pos = {{.x = 512, .y = 0}}, .size = {{.w = 256, .h = 128}}};
+  psyqo::Vertex title_tex_region_pos = title.texture_page.get_VRAM_position();
+  psyqo::Rect title_tex_region = {.pos = title_tex_region_pos, .size = {{.w = 256, .h = 128}}};
   gpu().uploadToVRAM(title_tex, title_tex_region);
   // send UI tex to vram
   psyqo::Vertex ui_tex_region_pos = HauntedGraveyard::graphics::UI::RenderUI::texture_page.get_VRAM_position();

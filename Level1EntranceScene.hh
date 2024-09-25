@@ -25,7 +25,7 @@ namespace HauntedGraveyard {
       HauntedGraveyard::graphics::Camera2D camera = { { .x = 0.0_fp, .y = 0.0_fp } };
       // HauntedGraveyard::graphics::TileMap tile_layer_0;
       // HauntedGraveyard::graphics::TileMap tile_layer_1;
-      HauntedGraveyard::Player player = { { .x = 0.0_fp, .y = 0.0_fp }, { .col = 8, .row = 1 } };
+      HauntedGraveyard::Player player = { { .x = 0.0_fp, .y = 0.0_fp } };
       // HauntedGraveyard::GraveKeeper grave_keeper;
       // HauntedGraveyard::Ghost ghost_0;
       void update();

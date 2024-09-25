@@ -3,8 +3,13 @@
 #include "GameApp.hh"
 #include "psyqo/simplepad.hh"
 #include "psyqo/vector.hh"
+#include "steve.h"
 
 void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
+  // send steve tex to vram
+  psyqo::Vertex player_tex_region_pos = player.sprite.texture_page.get_VRAM_position();
+  psyqo::Rect player_tex_region = {.pos = player_tex_region_pos, .size = {{.w = 256, .h = 256}}};
+  gpu().uploadToVRAM(steve_tex, player_tex_region);
 
   // setup input
   HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
@@ -22,7 +27,9 @@ void HauntedGraveyard::Level1EntranceScene::frame() {
   // update
   update();
   // draw
-  HauntedGraveyard::graphics::Render2D::draw_sprite(&player);
+  // background
+  gpu().clear({{ .r=0x40, .g=0x3d, .b=0x37 }});
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&player.sprite);
   // TODO
 }
 
