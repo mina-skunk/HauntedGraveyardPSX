@@ -21,9 +21,9 @@ void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphic
 
     // tex
     sprite->get_primitive();
-    // psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
-    // sprite->primitive.position.x = camera_space_position.x.integer();
-    // sprite->primitive.position.y = camera_space_position.y.integer();
+    psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
+    sprite->primitive.position.x = camera_space_position.x.integer();
+    sprite->primitive.position.y = camera_space_position.y.integer();
     gpu->sendPrimitive(sprite->primitive);
 }
 

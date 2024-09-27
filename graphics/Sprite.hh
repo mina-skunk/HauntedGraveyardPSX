@@ -13,7 +13,7 @@ namespace HauntedGraveyard::graphics {
     friend class Render2D;
     public:
       HauntedGraveyard::graphics::TexturePage texture_page;
-      psyqo::Color color = { .r = 0xFF, .g = 0xFF, .b = 0xFF };
+      psyqo::Color color = { .r = 0x80, .g = 0x80, .b = 0x80 };
       psyqo::Vertex uv = { 0, 0 };
       Sprite(psyqo::Vec2 position, HauntedGraveyard::graphics::TexturePage texture_page) : Spatial2D(position), texture_page(texture_page) {}
     private:
