@@ -24,7 +24,7 @@ void HauntedGraveyard::SplashScene::start(Scene::StartReason reason) {
 
 void HauntedGraveyard::SplashScene::frame() {
     // It is time to render the texture. We are going to clear the screen first.
-    gpu().clear({{ .r=0x23, .g=0x26, .b=0x34 }});
+    gpu().clear(background_color);
 
     if (frame_counter < 0x80) {
         logo_sprite.setColor(psyqo::Color{{.r = frame_counter, .g = frame_counter, .b = frame_counter}});

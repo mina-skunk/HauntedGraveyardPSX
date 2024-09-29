@@ -1,6 +1,7 @@
 #include "Render2D.hh"
 #include "Camera2D.hh"
 #include "Sprite.hh"
+#include "TileMap.hh"
 
 psyqo::GPU* HauntedGraveyard::graphics::Render2D::gpu;
 HauntedGraveyard::graphics::Camera2D* HauntedGraveyard::graphics::Render2D::active_camera;
@@ -19,12 +20,24 @@ void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphic
   sprite_tex_page.attr.setPageX(sprite->texture_page.col).setPageY(sprite->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
   gpu->sendPrimitive(sprite_tex_page);
 
-    // tex
-    sprite->get_primitive();
-    psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
-    sprite->primitive.position.x = camera_space_position.x.integer();
-    sprite->primitive.position.y = camera_space_position.y.integer();
-    gpu->sendPrimitive(sprite->primitive);
+  // tex
+  sprite->get_primitive();
+  psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
+  sprite->primitive.position.x = camera_space_position.x.integer();
+  sprite->primitive.position.y = camera_space_position.y.integer();
+  gpu->sendPrimitive(sprite->primitive);
+}
+
+void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
+  // set tex page
+  psyqo::Prim::TPage tilemap_tex_page;
+  tilemap_tex_page.attr.setPageX(tilemap->texture_page.col).setPageY(tilemap->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
+  gpu->sendPrimitive(tilemap_tex_page);
+
+  // pass camera ???
+  tilemap->get_fragment();
+  // TODO
+  gpu->sendFragment(tilemap->fragment);
 }
 
 psyqo::Vec2 HauntedGraveyard::graphics::Render2D::get_relative_position(psyqo::Vec2 world_space_position) {

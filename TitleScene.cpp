@@ -64,7 +64,7 @@ void HauntedGraveyard::TitleScene::frame() {
       break;
   }
   // background
-  gpu().clear({{ .r=0x40, .g=0x3d, .b=0x37 }});
+  gpu().clear(background_color);
   // title
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&title);
   // buttons

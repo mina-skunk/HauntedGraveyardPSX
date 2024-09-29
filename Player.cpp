@@ -11,7 +11,7 @@ void HauntedGraveyard::Player::update() {
   bottom_sprite.position = position;
   // visual
   int16_t moving_offset = is_moving ? 64 : 0;
-  if (frame_count > 8) {
+  if (frame_count > 4) {
     if (ani_offset > 64) {
       ani_offset = 0;
     } else {

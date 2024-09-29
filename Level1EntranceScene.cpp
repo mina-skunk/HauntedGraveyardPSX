@@ -30,10 +30,8 @@ void HauntedGraveyard::Level1EntranceScene::frame() {
   update();
   // draw
   // background
-  gpu().clear({{ .r=0x40, .g=0x3d, .b=0x37 }});
-  HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
-  HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
-  // TODO
+  gpu().clear(background_color);
+  draw();
 }
 
 void HauntedGraveyard::Level1EntranceScene::teardown(Scene::TearDownReason reason) {
@@ -61,4 +59,12 @@ void HauntedGraveyard::Level1EntranceScene::update() {
   }
   player.move(direction);
   player.update();
+}
+
+void HauntedGraveyard::Level1EntranceScene::draw() {
+  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_0);
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
+  // HauntedGraveyard::graphics::Render2D::draw_tilemap(& tile_layer_1);
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
+  // TODO
 }

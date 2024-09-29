@@ -25,7 +25,7 @@ namespace HauntedGraveyard {
       void interact();
     private:
       psyqo::Vec2 velocity = { .x = 0.0_fp, .y = 0.0_fp };
-      psyqo::FixedPoint<> speed = 0.8_fp;
+      const psyqo::FixedPoint<> speed = 0.8_fp;
       uint8_t frame_count = 0;
       int16_t ani_offset = 0;
   };

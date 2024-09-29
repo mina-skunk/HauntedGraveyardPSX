@@ -22,5 +22,6 @@ namespace HauntedGraveyard {
       psyqo::Prim::Sprite logo_sprite;
       unsigned char frame_counter = 0;
       TitleScene next_scene;
+      psyqo::Color background_color = { .r = 0x23, .g = 0x26, .b = 0x34 };
   };
 }

@@ -11,6 +11,7 @@ graphics/Render2D.cpp \
 graphics/Camera2D.cpp \
 graphics/Sprite.cpp \
 graphics/TexturePage.cpp \
+graphics/TileMap.cpp \
 graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
 graphics/UI/Image.cpp \

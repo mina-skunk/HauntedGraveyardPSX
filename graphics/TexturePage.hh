@@ -1,9 +1,9 @@
 #pragma once
 
-#include "psyqo/primitives/common.hh"
+#include "psyqo/primitives.hh"
 
 namespace HauntedGraveyard::graphics {
-  class TexturePage {
+  struct TexturePage {
     public:
       uint8_t col;
       uint8_t row;
