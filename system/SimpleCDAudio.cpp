@@ -1,16 +1,22 @@
-#include "psyqo/hardware/cdrom.hh"
 #include "SimpleCDAudio.hh"
-#include "Sound.hh"
-#include <cstdint>
 
-void HauntedGraveyard::system::SimpleCDAudio::init() {
-  Sound::set_volume(MAX_VOLUME);
-  Sound::set_cd_volume(MAX_VOLUME);
-  Sound::control(SPU_ENABLE | SPU_UNMUTE | SPU_ENABLE_CD);
-  psyqo::Hardware::CDRom::Command.send(psyqo::Hardware::CDRom::CDL::SETMODE, CD_MODE_SECTOR_SIZE_WHOLE | CD_MODE_AUTO_PAUSE | CD_MODE_ENABLE_CDDA);
-  psyqo::Hardware::CDRom::Command.send(psyqo::Hardware::CDRom::CDL::DEMUTE);
+bool HauntedGraveyard::system::SimpleCDAudio::is_playing = false;
+
+void HauntedGraveyard::system::SimpleCDAudio::play(psyqo::CDRomDevice *cdrom, unsigned track, bool repeat) {
+  cdrom->playCDDATrack(track, [cdrom, track, repeat](bool success) {
+        if (!success) {
+            HauntedGraveyard::system::SimpleCDAudio::is_playing = false;
+            // TODO throw error
+            return;
+        }
+        HauntedGraveyard::system::SimpleCDAudio::is_playing = !HauntedGraveyard::system::SimpleCDAudio::is_playing;
+        if (!HauntedGraveyard::system::SimpleCDAudio::is_playing && repeat) { // loop
+            HauntedGraveyard::system::SimpleCDAudio::play(cdrom, track, true);
+        }
+    });
 }
 
-void HauntedGraveyard::system::SimpleCDAudio::play(uint8_t track) {
-  psyqo::Hardware::CDRom::Command.send(psyqo::Hardware::CDRom::CDL::PLAY, track);
+void HauntedGraveyard::system::SimpleCDAudio::stop(psyqo::CDRomDevice *cdrom) {
+  cdrom->stopCDDA();
+  HauntedGraveyard::system::SimpleCDAudio::is_playing = false;
 }

@@ -1,23 +1,16 @@
 #pragma once
 
-#include "psyqo/cdrom.hh"
-
-#define CD_MODE_SECTOR_SIZE_WHOLE 0b00100000
-#define CD_MODE_REPORT_INT 0b00000100
-#define CD_MODE_AUTO_PAUSE 0b00000010
-#define CD_MODE_ENABLE_CDDA 0b00000001
+#include "psyqo/cdrom-device.hh"
 
 namespace HauntedGraveyard::system {
   class SimpleCDAudio {
     public:
-      /**
-      * Perpare for playing CD audio
-      */
-      static void init();
+      static bool is_playing;
       /**
       * Play CD track
       * @param track numbere to play
       */
-      static void play(uint8_t track);
+      static void play(psyqo::CDRomDevice *cdrom, unsigned track, bool repeat);
+      static void stop(psyqo::CDRomDevice *cdrom);
   };
 }

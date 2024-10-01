@@ -6,6 +6,8 @@ psyqo::Font<> HauntedGraveyard::GameApp::font;
 
 psyqo::SimplePad HauntedGraveyard::GameApp::input;
 
+psyqo::CDRomDevice HauntedGraveyard::GameApp::cdrom;
+
 void HauntedGraveyard::GameApp::prepare() {
     psyqo::GPU::Configuration config;
     config.set(psyqo::GPU::Resolution::W320)
@@ -13,6 +15,7 @@ void HauntedGraveyard::GameApp::prepare() {
         .set(psyqo::GPU::ColorMode::C15BITS)
         .set(psyqo::GPU::Interlace::PROGRESSIVE);
     gpu().initialize(config);
+    cdrom.prepare();
 }
 
 void HauntedGraveyard::GameApp::createScene() {

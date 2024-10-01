@@ -46,8 +46,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
   });
 
 #ifndef NO_CD
-  HauntedGraveyard::system::SimpleCDAudio::init();
-  HauntedGraveyard::system::SimpleCDAudio::play(TITLE_TRACK);
+  HauntedGraveyard::system::SimpleCDAudio::play(&HauntedGraveyard::GameApp::cdrom, TITLE_TRACK, true);
 #endif
 }
 
@@ -93,4 +92,6 @@ void HauntedGraveyard::TitleScene::frame() {
 void HauntedGraveyard::TitleScene::teardown(Scene::TearDownReason reason) {
   // clear input
   HauntedGraveyard::GameApp::input.setOnEvent(nullptr);
+
+  HauntedGraveyard::system::SimpleCDAudio::stop(&HauntedGraveyard::GameApp::cdrom);
 }
