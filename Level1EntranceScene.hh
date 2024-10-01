@@ -30,7 +30,7 @@ namespace HauntedGraveyard {
       HauntedGraveyard::graphics::TileMap tile_layer_0 = {
         { .x = 0.0_fp, .y = 0.0_fp },
         { .w = level1_map_WIDTH, .h = level1_map_HEIGHT },
-        level1_map_data,
+        level1_map,
         { .col = 8, .row = 0 }
       };
       // HauntedGraveyard::graphics::TileMap tile_layer_1;

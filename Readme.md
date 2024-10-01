@@ -104,12 +104,18 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 
 ### Image
 
-`cd .\tools\png2header\`  
+`cd .\tools\psx-conv\`  
 `npm i`  
-`node .\index.js ..\..\resources\MinaSkunkDevelopment.png splash_tex ..\..\splash.h`  
-`node .\index.js ..\..\resources\UI.png ui_tex ..\..\ui.h`  
-`node .\index.js ..\..\resources\HauntedGraveyard.png title_tex ..\..\title.h`  
-`node .\index.js ..\..\resources\StevePage.png steve_tex ..\..\steve.h`  
+`node .\index.js texture ..\..\resources\MinaSkunkDevelopment.png --name splash_tex ..\..\splash.h`  
+`node .\index.js texture ..\..\resources\UI.png --name ui_tex ..\..\ui.h`  
+`node .\index.js texture ..\..\resources\HauntedGraveyard.png --name title_tex ..\..\title.h`  
+`node .\index.js texture ..\..\resources\StevePage.png --name steve_tex ..\..\steve.h`  
+
+### Maps  
+
+`cd .\tools\psx-conv\`  
+`npm i`  
+`node .\index.js tilemap ..\..\resources\Level1EntranceMap.tmx --name level1_map ..\..\level1_map.h`  
 
 ## Publish
 

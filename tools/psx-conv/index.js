@@ -4,7 +4,7 @@ const { program } = require('commander');
 program.command("texture")
   .description("Converts PNG to 16bit RGB5A1 texture")
   .argument("<in>", "png image file")
-  .option("-n, --name <name>")
+  .option("-n, --name <name>", "name used for const")
   .argument("<out>", "texture as header file")
   .action((_in, _out, options) => {
     const PNG = require("png-js");
@@ -43,14 +43,39 @@ program.command("texture")
 program.command("tilemap")
   .description("Converts Tiled tilemap to binary map data")
   .argument("<in>", "xml Tiled tilemap")
+  .option("-n, --name <name>", "name used for const")
+  .option("-l, --layer <layer>", "layer to read from Tiled tilemap", 0)
   .argument("<out>", "tilemap as header file")
   .action((_in, _out, options) => {
     const tmx = require('tmx-parser');
 
     tmx.parseFile(_in, (err, map) => {
       if (err) throw err;
-      // TODO
-      console.log(map);
+
+      const width = map.width;
+      const height = map.height;
+
+      let outText = "\r\n#define " + options.name + "_WIDTH " + width + "\r\n" + "#define " + options.name + "_HEIGHT " + height + "\r\n\r\nconst unsigned char " + options.name + "[] = {";
+
+      for (let y = 0; y < height; y++) {
+        outText += "\r\n    ";
+        for (let x = 0; x < width; x++) {
+          const i = y * width + x;
+
+          const tile = map.layers[options.layer ? parseInt(options.layer) : 0].tiles[i];
+
+          if (tile) {
+            outText += tile.gid + ", ";
+          } else {
+            outText += "0, ";
+          }
+        }
+      }
+
+      outText += "\r\n};\r\n";
+      fs.writeFile(_out, outText, (err) => {
+        if (err) throw err;
+      });
     });
   });
 
