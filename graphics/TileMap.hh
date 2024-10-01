@@ -31,4 +31,4 @@ namespace HauntedGraveyard::graphics {
       psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, MAX_TILES> fragment;
       psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, MAX_TILES> *get_fragment();
   };
-}
+} // namespace HauntedGraveyard::graphics

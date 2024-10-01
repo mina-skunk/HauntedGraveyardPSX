@@ -17,7 +17,8 @@ void HauntedGraveyard::graphics::Render2D::set_camera(HauntedGraveyard::graphics
 void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphics::Sprite *sprite) {
   // set tex page
   psyqo::Prim::TPage sprite_tex_page;
-  sprite_tex_page.attr.setPageX(sprite->texture_page.col).setPageY(sprite->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
+  // sprite_tex_page.attr.setPageX(sprite->texture_page.col).setPageY(sprite->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
+  sprite->texture_page.get_primative(&sprite_tex_page);
   gpu->sendPrimitive(sprite_tex_page);
 
   // tex
@@ -31,12 +32,20 @@ void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphic
 void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
   // set tex page
   psyqo::Prim::TPage tilemap_tex_page;
-  tilemap_tex_page.attr.setPageX(tilemap->texture_page.col).setPageY(tilemap->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
+  // tilemap_tex_page.attr.setPageX(tilemap->texture_page.col).setPageY(tilemap->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
+  tilemap->texture_page.get_primative(&tilemap_tex_page);
   gpu->sendPrimitive(tilemap_tex_page);
 
-  // pass camera ???
   tilemap->get_fragment();
-  // TODO
+
+  uint8_t map_index = 0;
+  for (uint8_t y = 0; y < tilemap->size.h; y++) {
+    for (uint8_t x = 0; x < tilemap->size.w; x++) {
+      tilemap->fragment.primitives[map_index].setColor({ .r = 0x80, .g = 0x80, .b = 0x80 });
+      // TODO
+    }
+  }
+  
   gpu->sendFragment(tilemap->fragment);
 }
 
