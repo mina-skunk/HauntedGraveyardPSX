@@ -71,8 +71,9 @@ void HauntedGraveyard::Level1EntranceScene::update() {
 
 void HauntedGraveyard::Level1EntranceScene::draw() {
   HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_0);
+  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_1);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
-  // HauntedGraveyard::graphics::Render2D::draw_tilemap(& tile_layer_1);
+  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_2);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
   // TODO
 }

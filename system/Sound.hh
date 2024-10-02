@@ -11,17 +11,24 @@
 
 namespace HauntedGraveyard::system {
   class Sound {
+    enum NoiseFrequencyStep {
+      FOUR,
+      FIVE,
+      SIX,
+      SEVEN
+    };
     public:
       static void control(uint16_t cmd);
       /**
       * Sets SPU main volume
       * @param volume to set
       */
-      static void set_volume(uint16_t volume);
+      static void set_volume(int16_t volume);
       /**
       * Sets SPU CD audio volume
       * @param volume to set
       */
-      static void set_cd_volume(uint16_t volume);
+      static void set_cd_volume(int16_t volume);
+      static void set_voice_volume(unsigned voice, int16_t volume);
   };
 }

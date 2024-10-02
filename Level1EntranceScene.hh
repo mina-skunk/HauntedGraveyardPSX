@@ -9,6 +9,8 @@
 #include "Ghost.hh"
 #include "LevelScene.hh"
 #include "level1_map.h"
+#include "level1_map_detail.h"
+#include "level1_map_surface.h"
 
 using namespace psyqo::fixed_point_literals;
 
@@ -33,7 +35,18 @@ namespace HauntedGraveyard {
         level1_map,
         { .col = 8, .row = 0 }
       };
-      // HauntedGraveyard::graphics::TileMap tile_layer_1;
+      HauntedGraveyard::graphics::TileMap tile_layer_1 = {
+        { .x = 0.0_fp, .y = 0.0_fp },
+        { .w = level1_map_detail_WIDTH, .h = level1_map_detail_HEIGHT },
+        level1_map_detail,
+        { .col = 8, .row = 0 }
+      };
+      HauntedGraveyard::graphics::TileMap tile_layer_2 = {
+        { .x = 0.0_fp, .y = 0.0_fp },
+        { .w = level1_map_surface_WIDTH, .h = level1_map_surface_HEIGHT },
+        level1_map_surface,
+        { .col = 8, .row = 0 }
+      };
       HauntedGraveyard::Player player = { { .x = 16.0_fp, .y = 16.0_fp } };
       // HauntedGraveyard::GraveKeeper grave_keeper;
       // HauntedGraveyard::Ghost ghost_0;

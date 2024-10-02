@@ -41,27 +41,31 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
   tilemap->get_fragment();
 
   psyqo::Vec2 camera_space_position = get_relative_position(tilemap->position);
-  psyqo::Vertex pixel_position;
-  pixel_position.x = camera_space_position.x.integer();
-  pixel_position.y = camera_space_position.y.integer();
+  psyqo::Vertex map_pixel_position;
+  map_pixel_position.x = camera_space_position.x.integer();
+  map_pixel_position.y = camera_space_position.y.integer();
 
   uint16_t map_index = 0;
   uint16_t primitive_index = 0;
   for (uint8_t y = 0; y < tilemap->size.h; y++) {
     for (uint8_t x = 0; x < tilemap->size.w; x++) {
+
+      // calc position
+      psyqo::Vertex tile_position;
+      tile_position.x = map_pixel_position.x + (x * 16);
+      tile_position.y = map_pixel_position.y + (y * 16);
+      // cull
+      bool in_bounds = true;
+      if (tile_position.x < -16 || tile_position.x > 320  || tile_position.y < -16  || tile_position.y > 240 ) {
+        in_bounds = false;
+      }
+
       uint16_t tile_set_index = tilemap->data[map_index];
-      if (tile_set_index > 0) {
+
+      if (tile_set_index > 0 && in_bounds) {
         tile_set_index--;
 
-        // position
-        psyqo::Vertex tile_position;
-        tile_position.x = pixel_position.x + (x * 16);
-        tile_position.y = pixel_position.y + (y * 16);
-        // cull
-        if (tile_position.x < -16 || tile_position.x > 320 || tile_position.y < -16 || tile_position.y > 240) {
-          // TODO
-          // break;
-        }
+        // set position
         tilemap->fragment.primitives[primitive_index].position.x = tile_position.x;
         tilemap->fragment.primitives[primitive_index].position.y = tile_position.y;
         
