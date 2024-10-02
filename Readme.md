@@ -110,6 +110,7 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 `node .\index.js texture ..\..\resources\UI.png --name ui_tex ..\..\ui.h`  
 `node .\index.js texture ..\..\resources\HauntedGraveyard.png --name title_tex ..\..\title.h`  
 `node .\index.js texture ..\..\resources\StevePage.png --name steve_tex ..\..\steve.h`  
+`node .\index.js texture ..\..\resources\GraveyardTileSet.png --name graveyard_tileset_tex ..\..\tileset.h`  
 
 ### Maps  
 

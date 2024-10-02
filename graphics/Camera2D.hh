@@ -1,8 +1,11 @@
 #pragma once
 
 #include "psyqo/primitives/common.hh"
+#include "psyqo/fixed-point.hh"
 #include "Spatial2D.hh"
 #include "Render2D.hh"
+
+using namespace psyqo::fixed_point_literals;
 
 namespace HauntedGraveyard::graphics {
   /**
@@ -17,5 +20,6 @@ namespace HauntedGraveyard::graphics {
         * Set this camera as active for the Render2D
         */
       void set_active();
+      void follow(psyqo::Vec2 target);
   };
 }
