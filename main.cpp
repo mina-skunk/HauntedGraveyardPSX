@@ -1,6 +1,7 @@
 #include "GameApp.hh"
 
+static HauntedGraveyard::GameApp game;
+
 int main() {
-    HauntedGraveyard::GameApp game;
     return game.run();
 }

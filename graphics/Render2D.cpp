@@ -32,13 +32,6 @@ void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphic
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
-  // set tex page
-  psyqo::Prim::TPage tilemap_tex_page;
-  // tilemap_tex_page.attr.setPageX(tilemap->texture_page.col).setPageY(tilemap->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
-  tilemap->texture_page.get_primative(&tilemap_tex_page);
-  gpu->sendPrimitive(tilemap_tex_page);
-
-  tilemap->get_fragment();
 
   psyqo::Vec2 camera_space_position = get_relative_position(tilemap->position);
   psyqo::Vertex map_pixel_position;
@@ -69,7 +62,7 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
         tilemap->fragment.primitives[primitive_index].position.x = tile_position.x;
         tilemap->fragment.primitives[primitive_index].position.y = tile_position.y;
         
-        tilemap->fragment.primitives[primitive_index].setColor({ .r = 0x80, .g = 0x80, .b = 0x80 });
+        // tilemap->fragment.primitives[primitive_index].setColor({ .r = 0x80, .g = 0x80, .b = 0x80 });
 
         // UV
         if (tile_set_index < TILE_SET_WIDTH) {
@@ -86,7 +79,7 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
       map_index++;
     }
   }
-  tilemap->fragment.count = primitive_index + 1;
+  tilemap->fragment.count = primitive_index;
   
   gpu->sendFragment(tilemap->fragment);
 }
