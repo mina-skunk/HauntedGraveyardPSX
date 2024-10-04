@@ -1,8 +1,11 @@
 #include "Sprite.hh"
 
-psyqo::Prim::Sprite16x16* HauntedGraveyard::graphics::Sprite::get_primitive() {
-  primitive.setColor(color);
-  primitive.texInfo.u = uv.u;
-  primitive.texInfo.v = uv.v;
-  return &primitive;
+void HauntedGraveyard::graphics::Sprite::modulate_color(psyqo::Color color) {
+  fragment.primitive.sprite.setColor(color);
+}
+
+psyqo::Fragments::SimpleFragment<HauntedGraveyard::graphics::SpriteBlock>* HauntedGraveyard::graphics::Sprite::get_fragment() {
+  fragment.primitive.sprite.texInfo.u = uv.u;
+  fragment.primitive.sprite.texInfo.v = uv.v;
+  return &fragment;
 }

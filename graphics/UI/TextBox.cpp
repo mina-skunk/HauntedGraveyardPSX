@@ -7,7 +7,6 @@ psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 80> *HauntedGraveyard:
     uint8_t index = 0;
     for (uint8_t y = 0; y < TEXT_BOX_HIGHT; y++) {
       for (uint8_t x = 0; x < TEXT_BOX_WIDTH; x++) {
-        fragment.primitives[index].setColor({.r=255, .g=255, .b=255});
         // positions
         int16_t base_x = position.x;
         int16_t base_y = position.y;
@@ -45,6 +44,5 @@ psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 80> *HauntedGraveyard:
         index++;
       }
     }
-    fragment.count = 80;
     return &fragment;
 }

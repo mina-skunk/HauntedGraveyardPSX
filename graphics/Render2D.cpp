@@ -17,18 +17,11 @@ void HauntedGraveyard::graphics::Render2D::set_camera(HauntedGraveyard::graphics
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphics::Sprite *sprite) {
-  // set tex page
-  psyqo::Prim::TPage sprite_tex_page;
-  // sprite_tex_page.attr.setPageX(sprite->texture_page.col).setPageY(sprite->texture_page.row).set(psyqo::Prim::TPageAttr::Tex16Bits);
-  sprite->texture_page.get_primative(&sprite_tex_page);
-  gpu->sendPrimitive(sprite_tex_page);
-
-  // tex
-  sprite->get_primitive();
+  sprite->get_fragment();
   psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
-  sprite->primitive.position.x = camera_space_position.x.integer();
-  sprite->primitive.position.y = camera_space_position.y.integer();
-  gpu->sendPrimitive(sprite->primitive);
+  sprite->fragment.primitive.sprite.position.x = camera_space_position.x.integer();
+  sprite->fragment.primitive.sprite.position.y = camera_space_position.y.integer();
+  gpu->sendFragment(sprite->fragment);
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
@@ -61,8 +54,6 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
         // set position
         tilemap->fragment.primitives[primitive_index].position.x = tile_position.x;
         tilemap->fragment.primitives[primitive_index].position.y = tile_position.y;
-        
-        // tilemap->fragment.primitives[primitive_index].setColor({ .r = 0x80, .g = 0x80, .b = 0x80 });
 
         // UV
         if (tile_set_index < TILE_SET_WIDTH) {

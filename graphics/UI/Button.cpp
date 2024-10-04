@@ -48,6 +48,5 @@ psyqo::Fragments::FixedFragment<psyqo::Prim::Sprite16x16, 24> *HauntedGraveyard:
         index++;
       }
     }
-    fragment.count = 24;
     return &fragment;
 }

@@ -2,6 +2,8 @@
 
 #include "psyqo/scene.hh"
 #include "psyqo/vector.hh"
+#include "graphics/UI/RenderUI.hh"
+#include "graphics/UI/Image.hh"
 
 namespace HauntedGraveyard {
   class LevelScene : public psyqo::Scene {
@@ -10,6 +12,11 @@ namespace HauntedGraveyard {
       psyqo::Vec2 spawn_point = { 0.0_fp, 0.0_fp };
       psyqo::Vec2 exit = { 0.0_fp, 0.0_fp };
       psyqo::Color background_color = { .r = 0x40, .g = 0x3d, .b = 0x37 };
+      HauntedGraveyard::graphics::UI::Image hud_key_icon = {
+        { .x = 0, .y = 4 },
+        { .w = 32, .h = 32 },
+        HauntedGraveyard::graphics::UI::RenderUI::texture_page
+      };
       virtual void update() {};
       virtual void draw() {};
   };
