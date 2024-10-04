@@ -22,7 +22,7 @@ namespace HauntedGraveyard {
       static psyqo::SimplePad input;
       static psyqo::CDRomDevice cdrom;
       SplashScene first_scene;
-      SplashScene debug_scene;
+      Level1EntranceScene debug_scene;
 
     private:
       bool initialized = false;

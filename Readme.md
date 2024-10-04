@@ -89,6 +89,8 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
   - Graveyard tiles
 - [Fungus Cave](https://limezu.itch.io/fungus-cave) by [LimeZu](https://limezu.itch.io/)
   - tiles (for undergroiund/the crypt)
+- [FontPack](https://zingot.itch.io/fontpack) by [Zingot](https://zingot.itch.io/) 
+  - font via psyqo
 - Music
   - Title: [Spooky Halloween Cartoon](https://freemusicarchive.org/music/artur-aravidi/single/spooky-halloween-cartoonmp3/) by [Artur Aravidi](https://freemusicarchive.org/music/artur-aravidi/)
 - Developer, Mina (me)

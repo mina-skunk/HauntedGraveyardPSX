@@ -7,6 +7,8 @@
 
 psyqo::GPU* HauntedGraveyard::graphics::Render2D::gpu;
 HauntedGraveyard::graphics::Camera2D* HauntedGraveyard::graphics::Render2D::active_camera;
+psyqo::OrderingTable<8> HauntedGraveyard::graphics::Render2D::ordering_tables[2];
+psyqo::Fragments::SimpleFragment<psyqo::Prim::FastFill> HauntedGraveyard::graphics::Render2D::background_fragments[2];
 
 void HauntedGraveyard::graphics::Render2D::init(psyqo::GPU *gpu_) {
   HauntedGraveyard::graphics::Render2D::gpu = gpu_;
@@ -17,11 +19,11 @@ void HauntedGraveyard::graphics::Render2D::set_camera(HauntedGraveyard::graphics
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphics::Sprite *sprite) {
-  sprite->get_fragment();
   psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
-  sprite->fragment.primitive.sprite.position.x = camera_space_position.x.integer();
-  sprite->fragment.primitive.sprite.position.y = camera_space_position.y.integer();
-  gpu->sendFragment(sprite->fragment);
+  auto fragment = sprite->get_fragment(gpu->getParity());
+  fragment->primitive.sprite.position.x = camera_space_position.x.integer();
+  fragment->primitive.sprite.position.y = camera_space_position.y.integer();
+  gpu->chain(*fragment);
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
@@ -70,11 +72,21 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
       map_index++;
     }
   }
-  tilemap->fragment.count = primitive_index;
-  
-  gpu->sendFragment(tilemap->fragment);
+  if (primitive_index) {
+    tilemap->fragment.count = primitive_index;
+    gpu->sendFragment(tilemap->fragment);
+  }
+}
+
+void HauntedGraveyard::graphics::Render2D::draw_background(psyqo::Color color) {
+  gpu->getNextClear(background_fragments[gpu->getParity()].primitive, color);
+  gpu->chain(background_fragments[gpu->getParity()]);
 }
 
 psyqo::Vec2 HauntedGraveyard::graphics::Render2D::get_relative_position(psyqo::Vec2 world_space_position) {
   return world_space_position - active_camera->position;
+}
+
+void HauntedGraveyard::graphics::Render2D::finish_drawing() {
+  gpu->chain(ordering_tables[gpu->getParity()]);
 }

@@ -80,13 +80,15 @@ void HauntedGraveyard::Level1EntranceScene::update() {
 }
 
 void HauntedGraveyard::Level1EntranceScene::draw() {
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground);
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground_detail);
+  // HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground);
+  // HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground_detail);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_surface);
+  // HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_surface);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
-  HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
-  GameApp::font.print(gpu(), "0/3", { .x = 33, .y = 13 }, { 0x10, 0x10, 0x10 }); // text shadow
-  GameApp::font.print(gpu(), "0/3", { .x = 32, .y = 12 }, { 0xff, 0xff, 0xff });
-  // TODO
+  // HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
+  // GameApp::font.print(gpu(), "0/3", { .x = 33, .y = 13 }, { 0x10, 0x10, 0x10 }); // text shadow
+  // GameApp::font.print(gpu(), "0/3", { .x = 32, .y = 12 }, { 0xff, 0xff, 0xff });
+  // // TODO
+
+  // HauntedGraveyard::graphics::Render2D::finish_drawing();
 }

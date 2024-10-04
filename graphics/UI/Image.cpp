@@ -1,13 +1,15 @@
 #include "Image.hh"
 
 void HauntedGraveyard::graphics::UI::Image::modulate_color(psyqo::Color color) {
-  primitive.setColor(color);
+  for (auto & fragment : fragments) {
+    fragment.primitive.sprite.setColor(color);
+  }
 }
 
-psyqo::Prim::Sprite* HauntedGraveyard::graphics::UI::Image::get_primitive() {
-  primitive.position = position;
-  primitive.size = size;
-  primitive.texInfo.u = uv.u;
-  primitive.texInfo.v = uv.v;
-  return &primitive;
+HauntedGraveyard::graphics::UI::ImageFragment* HauntedGraveyard::graphics::UI::Image::get_fragment(uint8_t buffer_index) {
+  fragments[buffer_index].primitive.sprite.position = position;
+  fragments[buffer_index].primitive.sprite.size = size;
+  fragments[buffer_index].primitive.sprite.texInfo.u = uv.u;
+  fragments[buffer_index].primitive.sprite.texInfo.v = uv.v;
+  return &fragments[buffer_index];
 }

@@ -63,7 +63,9 @@ void HauntedGraveyard::TitleScene::frame() {
       break;
   }
   // background
-  gpu().clear(background_color);
+  // There is only UI on the scene so we chain the background directly in the scene
+  gpu().getNextClear(background_fragments[gpu().getParity()].primitive, background_color);
+  gpu().chain(background_fragments[gpu().getParity()]);
   // title
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&title);
   // buttons

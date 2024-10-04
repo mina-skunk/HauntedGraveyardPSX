@@ -10,7 +10,7 @@ void HauntedGraveyard::Player::update() {
   top_sprite.position.y = position.y - 16;
   bottom_sprite.position = position;
   // visual
-  int16_t moving_offset = is_moving ? 64 : 0;
+  uint8_t moving_offset = is_moving ? 64 : 0;
   if (frame_count > 4) {
     if (ani_offset > 64) {
       ani_offset = 0;
@@ -21,8 +21,8 @@ void HauntedGraveyard::Player::update() {
   } else {
     frame_count++;
   }
-  int16_t u;
-  int16_t v;
+  uint8_t u;
+  uint8_t v;
   switch (orientation) {
     case Character::UP :
       u = ani_offset + 96;
