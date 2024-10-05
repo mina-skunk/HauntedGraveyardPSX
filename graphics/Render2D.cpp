@@ -33,7 +33,7 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
   map_pixel_position.x = camera_space_position.x.integer();
   map_pixel_position.y = camera_space_position.y.integer();
 
-  auto fragment = tilemap->get_fragment(gpu->getParity());
+  auto sprite_fragment_buffer = tilemap->sprite_fragments[gpu->getParity()];
 
   uint16_t map_index = 0;
   uint16_t primitive_index = 0;
@@ -56,27 +56,25 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
         tile_set_index--;
 
         // set position
-        fragment->primitives[primitive_index].position.x = tile_position.x;
-        fragment->primitives[primitive_index].position.y = tile_position.y;
+        sprite_fragment_buffer[primitive_index].primitive.sprite.position.x = tile_position.x;
+        sprite_fragment_buffer[primitive_index].primitive.sprite.position.y = tile_position.y;
 
         // UV
         if (tile_set_index < TILE_SET_WIDTH) {
-          fragment->primitives[primitive_index].texInfo.u = tile_set_index * 16;
-          fragment->primitives[primitive_index].texInfo.v = 0;
+          sprite_fragment_buffer[primitive_index].primitive.sprite.texInfo.u = tile_set_index * 16;
+          sprite_fragment_buffer[primitive_index].primitive.sprite.texInfo.v = 0;
         } else {
-          fragment->primitives[primitive_index].texInfo.u = (tile_set_index % TILE_SET_WIDTH) * 16;
-          fragment->primitives[primitive_index].texInfo.v = (tile_set_index / TILE_SET_WIDTH) * 16;
+          sprite_fragment_buffer[primitive_index].primitive.sprite.texInfo.u = (tile_set_index % TILE_SET_WIDTH) * 16;
+          sprite_fragment_buffer[primitive_index].primitive.sprite.texInfo.v = (tile_set_index / TILE_SET_WIDTH) * 16;
         }
+
+        gpu->chain(sprite_fragment_buffer[primitive_index]);
 
         primitive_index++;
       }
 
       map_index++;
     }
-  }
-  if (primitive_index) {
-    fragment->count = primitive_index;
-    gpu->chain(*fragment);
   }
 }
 

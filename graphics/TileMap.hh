@@ -5,6 +5,7 @@
 #include "Visual2D.hh"
 #include "Render2D.hh"
 #include "TexturePage.hh"
+#include "common.hh"
 
 // max tiles in a layer (15 + 1) * (20 + 1)
 #define MAX_TILES 336
@@ -17,8 +18,6 @@ namespace HauntedGraveyard::graphics {
     uint8_t * flags;
   };
 
-  typedef psyqo::Fragments::FixedFragmentWithPrologue<psyqo::Prim::TPage, psyqo::Prim::Sprite16x16, MAX_TILES> TileMapFragment;
-
   /**
     * Parent of tile sprites. Loads map data.
     */
@@ -27,15 +26,14 @@ namespace HauntedGraveyard::graphics {
     public:
       psyqo::Vertex size;
       const uint8_t * data;
-      HauntedGraveyard::graphics::TexturePage texture_page;
       TileMap(psyqo::Vec2 position, HauntedGraveyard::graphics::TexturePage texture_page, int32_t z_order, psyqo::Vertex size, const uint8_t * data) : Visual2D(position, texture_page, z_order), size(size), data(data) {
-        for (auto & fragment : fragments) {
-          fragment.count = MAX_TILES;
-          texture_page.get_primative(&fragment.prologue);
+        for (auto & sprite_fragment_buffer : sprite_fragments) {
+          for (auto & sprite_fragment : sprite_fragment_buffer) {
+            texture_page.get_primative(&sprite_fragment.primitive.t_page);
+          }
         }
       }
     private:
-      TileMapFragment fragments[2];
-      TileMapFragment *get_fragment(uint8_t buffer_index);
+      SpriteFragment sprite_fragments[2][MAX_TILES];
   };
 } // namespace HauntedGraveyard::graphics
