@@ -6,24 +6,26 @@ classDiagram
     +Vec2 position
   }
   Spatial2D <|-- Camera2D
-  Spatial2D <|-- Sprite
-  Spatial2D <|-- TileMap
+  Spatial2D <|-- Visual2D
   class Camera2D {
     +Vertex size
   }
-  class Sprite {
+  class Visual2D {
     +TexturePage texture_page
-    +Vertex uv
+    +int z_order
+  }
+  Visual2D *-- TexturePage
+  Visual2D <|-- Sprite
+  Visual2D <|-- TileMap
+  class Sprite {
+    +UVCoords uv
     -SimpleFragment~SpriteBlock~ fragment
     +modulate_color(color)
   }
-  Sprite *-- TexturePage
   class TileMap {
     +Vertex size
-    +TexturePage texture_page
     -TileMapFragment fragment
   }
-  TileMap *-- TexturePage
   class TexturePage {
     +int col
     +int row

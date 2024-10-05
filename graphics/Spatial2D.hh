@@ -6,7 +6,7 @@ namespace HauntedGraveyard::graphics {
   /*
     * Base Object in 2d space 
     */
-  class Spatial2D  {
+  class Spatial2D {
     public:
       psyqo::Vec2 position;
       Spatial2D(psyqo::Vec2 position) : position(position) {}

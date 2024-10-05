@@ -14,7 +14,7 @@ namespace HauntedGraveyard::graphics::UI {
     public:
       const char* line1;
       const char* line2;
-      inline TextBox(psyqo::Vertex position, const char* line1, const char* line2) : Element(position), line1(line1), line2(line2) {
+      TextBox(psyqo::Vertex position, const char* line1, const char* line2) : Element(position), line1(line1), line2(line2) {
         for (auto & fragment : fragments) {
           RenderUI::texture_page.get_primative(&fragment.prologue);
           fragment.count = TEXT_BOX_SPRITE_COUNT;

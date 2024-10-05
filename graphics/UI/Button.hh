@@ -15,7 +15,7 @@ namespace HauntedGraveyard::graphics::UI {
     public:
       const char* text;
       bool selected;
-      inline Button(psyqo::Vertex position, const char* text, bool selected) : Element(position), text(text), selected(selected) {
+      Button(psyqo::Vertex position, const char* text, bool selected) : Element(position), text(text), selected(selected) {
         for (auto & fragment : fragments) {
           RenderUI::texture_page.get_primative(&fragment.prologue);
           fragment.count = BUTON_SPRITE_COUNT;

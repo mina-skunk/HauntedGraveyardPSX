@@ -32,21 +32,24 @@ namespace HauntedGraveyard {
       HauntedGraveyard::graphics::Camera2D camera = { { .x = 40.0_fp, .y = 128.0_fp } };
       HauntedGraveyard::graphics::TileMap tile_layer_ground = {
         { .x = 0.0_fp, .y = 0.0_fp },
+        { .col = 8, .row = 0 },
+        6,
         { .w = level1_map_WIDTH, .h = level1_map_HEIGHT },
-        level1_map,
-        { .col = 8, .row = 0 }
+        level1_map
       };
       HauntedGraveyard::graphics::TileMap tile_layer_ground_detail = {
         { .x = 0.0_fp, .y = 0.0_fp },
+        { .col = 8, .row = 0 },
+        5,
         { .w = level1_map_WIDTH, .h = level1_map_HEIGHT },
-        level1_map_detail,
-        { .col = 8, .row = 0 }
+        level1_map_detail
       };
       HauntedGraveyard::graphics::TileMap tile_layer_surface = {
         { .x = 0.0_fp, .y = 0.0_fp },
+        { .col = 8, .row = 0 },
+        4,
         { .w = level1_map_WIDTH, .h = level1_map_HEIGHT },
-        level1_map_surface,
-        { .col = 8, .row = 0 }
+        level1_map_surface
       };
       HauntedGraveyard::Player player = { { .x = 160.0_fp, .y = 288.0_fp } };
       // HauntedGraveyard::GraveKeeper grave_keeper;

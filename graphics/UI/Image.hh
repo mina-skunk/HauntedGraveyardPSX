@@ -20,7 +20,7 @@ namespace HauntedGraveyard::graphics::UI {
       psyqo::Vertex size;
       HauntedGraveyard::graphics::TexturePage texture_page;
       psyqo::PrimPieces::UVCoords uv = { 0, 0 };
-      inline Image(psyqo::Vertex position, psyqo::Vertex size, HauntedGraveyard::graphics::TexturePage texture_page) : Element(position), size(size), texture_page(texture_page) {
+      Image(psyqo::Vertex position, psyqo::Vertex size, HauntedGraveyard::graphics::TexturePage texture_page) : Element(position), size(size), texture_page(texture_page) {
         for (auto & fragment : fragments) {
           texture_page.get_primative(&fragment.primitive.t_page);
           fragment.primitive.sprite.position = position;

@@ -2,7 +2,7 @@
 
 #include "psyqo/fragments.hh"
 #include "psyqo/primitives.hh"
-#include "Spatial2D.hh"
+#include "Visual2D.hh"
 #include "Render2D.hh"
 #include "TexturePage.hh"
 
@@ -22,17 +22,20 @@ namespace HauntedGraveyard::graphics {
   /**
     * Parent of tile sprites. Loads map data.
     */
-  class TileMap : public HauntedGraveyard::graphics::Spatial2D  {
+  class TileMap : public HauntedGraveyard::graphics::Visual2D  {
     friend class Render2D;
     public:
       psyqo::Vertex size;
       const uint8_t * data;
       HauntedGraveyard::graphics::TexturePage texture_page;
-      inline TileMap(psyqo::Vec2 position, psyqo::Vertex size, const uint8_t * data, HauntedGraveyard::graphics::TexturePage texture_page) : Spatial2D(position), size(size), data(data), texture_page(texture_page) {
-        fragment.count = MAX_TILES;
-        texture_page.get_primative(&fragment.prologue);
+      TileMap(psyqo::Vec2 position, HauntedGraveyard::graphics::TexturePage texture_page, int32_t z_order, psyqo::Vertex size, const uint8_t * data) : Visual2D(position, texture_page, z_order), size(size), data(data) {
+        for (auto & fragment : fragments) {
+          fragment.count = MAX_TILES;
+          texture_page.get_primative(&fragment.prologue);
+        }
       }
     private:
-      TileMapFragment fragment;
+      TileMapFragment fragments[2];
+      TileMapFragment *get_fragment(uint8_t buffer_index);
   };
 } // namespace HauntedGraveyard::graphics

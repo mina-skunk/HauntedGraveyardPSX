@@ -13,8 +13,8 @@ namespace HauntedGraveyard {
     
     public:
       psyqo::Vec2 size = { .x = 16.0_fp, .y = 16.0_fp };
-      HauntedGraveyard::graphics::Sprite top_sprite = { { .x = 0.0_fp, .y =  0.0_fp }, { .col = 8, .row = 1 } };
-      HauntedGraveyard::graphics::Sprite bottom_sprite = { { .x = 0.0_fp, .y =  0.0_fp }, { .col = 8, .row = 1 } };
+      HauntedGraveyard::graphics::Sprite top_sprite = { { .x = 0.0_fp, .y =  0.0_fp }, { .col = 8, .row = 1 }, 3 };
+      HauntedGraveyard::graphics::Sprite bottom_sprite = { { .x = 0.0_fp, .y =  0.0_fp }, { .col = 8, .row = 1 }, 4 };
       void update() override;
       Player(psyqo::Vec2 position) : Character(position) {
         top_sprite.position.x = position.x;

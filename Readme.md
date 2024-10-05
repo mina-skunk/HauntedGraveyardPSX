@@ -126,3 +126,72 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 
 `make`
 `mkpsxiso .\HauntedGraveyard.xml`  
+
+## Class Diagram
+
+```mermaid
+classDiagram
+  class Application {
+    -GPU gpu
+    -vector scenesStack
+    +run(): int
+    +prepare()
+    +createScene()
+    +gpu(): GPU
+    +getCurrentScene(): Scene
+    +pushScene(scene)
+    +popScene(): Scene
+  }
+  Application <|-- GameApp
+  class GameApp {
+    -bool initialized
+    +Font font
+    +SimplePad input
+    +CDRomDevice cdrom
+    +SplashScene first_scene
+    +Scene debug_scene
+  }
+  GameApp --* SplashScene
+  class Scene {
+    -Application parent
+    pushScene(scene)
+    popScene(): Scene
+    gpu(): GPU
+    +start(reason)
+    +frame()
+    +teardown(reason)
+  }
+  Scene <|-- SplashScene
+  Scene <|-- TitleScene
+  Scene <|-- Level1EntranceScene
+  Scene <|-- Level2GraveyardScene
+  Scene <|-- Level3CryptScene
+  Scene <|-- EndingScene
+  class SplashScene {
+    -TitleScene next_scene
+    -Image logo
+  }
+  SplashScene --* TitleScene
+  class TitleScene {
+    -Level1EntranceScene next_scene
+    -Image title
+    -Button start_button
+    -Button instructions_button
+    -TextBox instructions 
+  }
+  TitleScene --* Level1EntranceScene
+  class Level1EntranceScene {
+    -Level2GraveyardScene next_scene
+    -Player player
+    -TileMap tile_map
+  }
+  Level1EntranceScene --* Level2GraveyardScene
+  class Level2GraveyardScene {
+    -Level3CryptScene next_scene
+  }
+  Level2GraveyardScene --* Level3CryptScene
+  class Level3CryptScene {
+    -EndingScene next_scene
+  }
+  Level3CryptScene --* EndingScene
+```
