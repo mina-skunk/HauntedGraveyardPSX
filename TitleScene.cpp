@@ -1,6 +1,7 @@
-#include "graphics/UI/RenderUI.hh"
 #include "TitleScene.hh"
+
 #include "GameApp.hh"
+#include "graphics/UI/RenderUI.hh"
 #include "psyqo/primitives/common.hh"
 #include "system/SimpleCDAudio.hh"
 #include "title.h"
@@ -16,7 +17,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
   psyqo::Rect ui_tex_region = {.pos = ui_tex_region_pos, .size = {{.w = 256, .h = 256}}};
   gpu().uploadToVRAM(ui_tex, ui_tex_region);
 
-  cross_button.uv = { .u = 48, .v = 48 };
+  cross_button.uv = {.u = 48, .v = 48};
 
   // setup input
   HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
@@ -26,13 +27,13 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
         return;
       }
       if (event.button == psyqo::SimplePad::Up && selected > 0) {
-          selected--;
+        selected--;
       }
       if (event.button == psyqo::SimplePad::Down && selected < 1) {
-          selected++;
+        selected++;
       }
       if (event.button == psyqo::SimplePad::Cross || event.button == psyqo::SimplePad::Start) {
-        switch(selected) {
+        switch (selected) {
           case 0:
             pushScene(&next_scene);
             break;
@@ -42,7 +43,6 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
         }
       }
     }
-
   });
 
 #ifndef NO_CD
@@ -52,7 +52,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
 
 void HauntedGraveyard::TitleScene::frame() {
   // update
-  switch(selected) {
+  switch (selected) {
     case 0:
       start_button.selected = true;
       instructions_button.selected = false;
@@ -72,15 +72,15 @@ void HauntedGraveyard::TitleScene::frame() {
   HauntedGraveyard::graphics::UI::RenderUI::draw_button(&start_button);
   HauntedGraveyard::graphics::UI::RenderUI::draw_button(&instructions_button);
   // instructions
-  if (show_instructions) { // animate cross button
+  if (show_instructions) {  // animate cross button
     if (frame_counter < 10) {
-      cross_button.uv = { .u = 48, .v = 48 };
+      cross_button.uv = {.u = 48, .v = 48};
     } else if (frame_counter < 20) {
-      cross_button.uv = { .u = 64, .v = 48 };
+      cross_button.uv = {.u = 64, .v = 48};
     } else if (frame_counter < 30) {
-      cross_button.uv = { .u = 80, .v = 48 };
+      cross_button.uv = {.u = 80, .v = 48};
     } else if (frame_counter < 40) {
-      cross_button.uv = { .u = 64, .v = 48 };
+      cross_button.uv = {.u = 64, .v = 48};
     } else {
       frame_counter = 0;
     }

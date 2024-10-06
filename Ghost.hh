@@ -1,10 +1,10 @@
 #pragma once
 
-#include "graphics/Sprite.hh"
+#include "Character.hh"
 
 namespace HauntedGraveyard {
-  class Ghost final : public HauntedGraveyard::graphics::Sprite  {
-    public:
-      // TODO
-  };
-}
+class Ghost final : public HauntedGraveyard::Character {
+public:
+  // TODO
+};
+}  // namespace HauntedGraveyard

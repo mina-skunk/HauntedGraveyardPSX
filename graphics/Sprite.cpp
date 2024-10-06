@@ -1,7 +1,7 @@
 #include "Sprite.hh"
 
 void HauntedGraveyard::graphics::Sprite::modulate_color(psyqo::Color color) {
-  for (auto & fragment : fragments) {
+  for (auto& fragment : fragments) {
     fragment.primitive.sprite.setColor(color);
   }
 }

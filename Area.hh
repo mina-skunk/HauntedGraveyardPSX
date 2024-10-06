@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Character.hh"
+#include "psyqo/vector.hh"
 
 namespace HauntedGraveyard {
-class GraveKeeper final : public HauntedGraveyard::Character {
+struct Area {
 public:
   psyqo::Vec2 position;
   psyqo::Vec2 size;

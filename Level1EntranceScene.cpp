@@ -1,8 +1,9 @@
+#include "Level1EntranceScene.hh"
+
 #include "Character.hh"
+#include "GameApp.hh"
 #include "Player.hh"
 #include "graphics/Render2D.hh"
-#include "Level1EntranceScene.hh"
-#include "GameApp.hh"
 #include "graphics/UI/RenderUI.hh"
 #include "psyqo/simplepad.hh"
 #include "psyqo/vector.hh"
@@ -30,7 +31,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
     if (event.type == psyqo::SimplePad::Event::ButtonPressed) {
       if (event.button == psyqo::SimplePad::Cross) {
-          player.interact();
+        player.interact();
       }
     }
   });
@@ -38,7 +39,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   // init level
   HauntedGraveyard::graphics::Render2D::set_camera(&camera);
   player.position = spawn_point;
-  hud_key_icon.uv = { .u = 0, .v = 96 };
+  hud_key_icon.uv = {.u = 0, .v = 96};
 }
 
 void HauntedGraveyard::Level1EntranceScene::frame() {
@@ -86,8 +87,8 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_surface);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
-  GameApp::font.chainprint(gpu(), "0/3", { .x = 33, .y = 13 }, { 0x10, 0x10, 0x10 }); // text shadow
-  GameApp::font.chainprint(gpu(), "0/3", { .x = 32, .y = 12 }, { 0xff, 0xff, 0xff });
+  GameApp::font.chainprint(gpu(), "0/3", {.x = 33, .y = 13}, {0x10, 0x10, 0x10});  // text shadow
+  GameApp::font.chainprint(gpu(), "0/3", {.x = 32, .y = 12}, {0xff, 0xff, 0xff});
 
   // HauntedGraveyard::graphics::Render2D::finish_drawing();
 }

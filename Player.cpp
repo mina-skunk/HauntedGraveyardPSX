@@ -1,7 +1,8 @@
+#include "Player.hh"
+
 #include "Character.hh"
 #include "psyqo/kernel.hh"
 #include "psyqo/soft-math.hh"
-#include "Player.hh"
 
 void HauntedGraveyard::Player::update() {
   // physics
@@ -24,33 +25,33 @@ void HauntedGraveyard::Player::update() {
   uint8_t u;
   uint8_t v;
   switch (orientation) {
-    case Character::UP :
+    case Character::UP:
       u = ani_offset + 96;
       v = moving_offset;
-      top_sprite.uv = { u, v };
+      top_sprite.uv = {u, v};
       v += 16;
-      bottom_sprite.uv = { u, v };
+      bottom_sprite.uv = {u, v};
       break;
-    case Character::DOWN :
+    case Character::DOWN:
       u = ani_offset + 96;
       v = moving_offset + 32;
-      top_sprite.uv = { u, v };
+      top_sprite.uv = {u, v};
       v += 16;
-      bottom_sprite.uv = { u, v };
+      bottom_sprite.uv = {u, v};
       break;
-    case Character::LEFT :
+    case Character::LEFT:
       u = ani_offset;
       v = moving_offset + 32;
-      top_sprite.uv = { u, v };
+      top_sprite.uv = {u, v};
       v += 16;
-      bottom_sprite.uv = { u, v };
+      bottom_sprite.uv = {u, v};
       break;
-    case Character::RIGHT :
+    case Character::RIGHT:
       u = ani_offset;
       v = moving_offset;
-      top_sprite.uv = { u, v };
+      top_sprite.uv = {u, v};
       v += 16;
-      bottom_sprite.uv = { u, v };
+      bottom_sprite.uv = {u, v};
       break;
   }
 }
