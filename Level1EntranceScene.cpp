@@ -79,6 +79,7 @@ void HauntedGraveyard::Level1EntranceScene::update() {
   for (auto &solid_block : solid_blocks) {
     player.apply_solid(&solid_block);
   }
+  player.apply_solid(&grave_keeper.area_trigger);
   player.update();
 
   camera.follow(player.position);
