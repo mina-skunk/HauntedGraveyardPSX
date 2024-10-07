@@ -89,6 +89,9 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   for (auto &tile_layer : tile_layers) {
     HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer);
   }
+  // GraveKeeper
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&grave_keeper.bottom_sprite);
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&grave_keeper.top_sprite);
   // Player
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);

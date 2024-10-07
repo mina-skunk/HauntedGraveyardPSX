@@ -49,7 +49,7 @@ private:
        {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
        level1_map_surface}};
   HauntedGraveyard::Player player = {{.x = 160.0_fp, .y = 288.0_fp}};
-  // HauntedGraveyard::GraveKeeper grave_keeper;
+  HauntedGraveyard::GraveKeeper grave_keeper = {{.x = 128.0_fp, .y = 240.0_fp}, "", ""};
   // HauntedGraveyard::Ghost ghost_0;
   Level2GraveyardScene next_scene;
   HauntedGraveyard::Area world_bounds = {

@@ -9,6 +9,7 @@
 
 namespace HauntedGraveyard::graphics::UI {
 typedef psyqo::Fragments::FixedFragmentWithPrologue<psyqo::Prim::TPage, psyqo::Prim::Sprite16x16, TEXT_BOX_SPRITE_COUNT> TextBoxFragment;
+// TODO turn into 9 Segment and lable and or multiline
 class TextBox : public Element {
   friend class HauntedGraveyard::graphics::UI::RenderUI;
 
