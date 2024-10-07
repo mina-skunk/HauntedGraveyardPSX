@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Area.hh"
 #include "Character.hh"
 #include "graphics/Sprite.hh"
 #include "psyqo/fixed-point.hh"
@@ -8,6 +9,9 @@
 using namespace psyqo::fixed_point_literals;
 
 namespace HauntedGraveyard {
+/**
+ * Controlled Player Character
+ */
 class Player final : public HauntedGraveyard::Character {
 public:
   psyqo::Vec2 size = {.x = 16.0_fp, .y = 16.0_fp};
@@ -19,8 +23,19 @@ public:
     top_sprite.position.y = position.y - 16;
     bottom_sprite.position = position;
   }
+  /**
+   * Apply input direction
+   */
   void move(psyqo::Vec2 direction);
   void interact();
+  /**
+   * Keep player in Area
+   */
+  void apply_bounds(Area *bounds);
+  /**
+   * Keep player out of Area
+   */
+  void apply_solid(Area *solid);
 
 private:
   psyqo::Vec2 velocity = {.x = 0.0_fp, .y = 0.0_fp};

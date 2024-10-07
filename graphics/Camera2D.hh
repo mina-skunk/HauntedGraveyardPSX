@@ -21,6 +21,9 @@ public:
    * Set this camera as active for the Render2D
    */
   void set_active();
+  /**
+   * Keep target in center 3rd of screen
+   */
   void follow(psyqo::Vec2 target);
 };
 }  // namespace HauntedGraveyard::graphics

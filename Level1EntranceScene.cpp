@@ -18,7 +18,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   gpu().uploadToVRAM(steve_tex, player_tex_region);
 
   // send tileset to vram
-  psyqo::Vertex tilemap_region_pos = tile_layer_ground.texture_page.get_VRAM_position();
+  psyqo::Vertex tilemap_region_pos = tile_layers[0].texture_page.get_VRAM_position();
   psyqo::Rect tilemap_region = {.pos = tilemap_region_pos, .size = {{.w = 256, .h = 256}}};
   gpu().uploadToVRAM(graveyard_tileset_tex, tilemap_region);
 
@@ -75,17 +75,24 @@ void HauntedGraveyard::Level1EntranceScene::update() {
     player.orientation = Character::RIGHT;
   }
   player.move(direction);
+  player.apply_bounds(&world_bounds);
+  for (auto &solid_block : solid_blocks) {
+    player.apply_solid(&solid_block);
+  }
   player.update();
 
   camera.follow(player.position);
 }
 
 void HauntedGraveyard::Level1EntranceScene::draw() {
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground);
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_ground_detail);
+  // Tilemap
+  for (auto &tile_layer : tile_layers) {
+    HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer);
+  }
+  // Player
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
-  HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer_surface);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
+  // HUD
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
   GameApp::font.chainprint(gpu(), "0/3", {.x = 33, .y = 13}, {0x10, 0x10, 0x10});  // text shadow
   GameApp::font.chainprint(gpu(), "0/3", {.x = 32, .y = 12}, {0xff, 0xff, 0xff});

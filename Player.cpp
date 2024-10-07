@@ -3,6 +3,7 @@
 #include "Character.hh"
 #include "psyqo/kernel.hh"
 #include "psyqo/soft-math.hh"
+#include "psyqo/vector.hh"
 
 void HauntedGraveyard::Player::update() {
   // physics
@@ -68,3 +69,32 @@ void HauntedGraveyard::Player::move(psyqo::Vec2 direction) {
 }
 
 void HauntedGraveyard::Player::interact() {}
+
+void HauntedGraveyard::Player::apply_bounds(Area *bounds) {
+  psyqo::Vec2 prediction;
+  prediction.x = position.x + (velocity.x * speed);
+  prediction.y = position.y + (velocity.y * speed);
+
+  if (prediction.x < bounds->position.x || prediction.x > bounds->position.x + bounds->size.x - 16.0_fp) {
+    velocity.x = 0.0_fp;
+  }
+
+  if (prediction.y < bounds->position.y || prediction.y > bounds->position.y + bounds->size.y - 16.0_fp) {
+    velocity.y = 0.0_fp;
+  }
+}
+
+void HauntedGraveyard::Player::apply_solid(Area *solid) {
+  psyqo::Vec2 prediction;
+  prediction.x = position.x + (velocity.x * speed);
+  prediction.y = position.y + (velocity.y * speed);
+
+  bool collided = prediction.x > solid->position.x - 16.0_fp &&
+                  prediction.x < solid->position.x + solid->size.x &&
+                  prediction.y > solid->position.y - 16.0_fp &&
+                  prediction.y < solid->position.y + solid->size.y;
+
+  if (collided) {
+    velocity = { 0.0_fp, 0.0_fp };
+  }
+}
