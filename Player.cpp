@@ -89,12 +89,9 @@ void HauntedGraveyard::Player::apply_solid(Area *solid) {
   prediction.x = position.x + (velocity.x * speed);
   prediction.y = position.y + (velocity.y * speed);
 
-  bool collided = prediction.x > solid->position.x - 16.0_fp &&
-                  prediction.x < solid->position.x + solid->size.x &&
-                  prediction.y > solid->position.y - 16.0_fp &&
-                  prediction.y < solid->position.y + solid->size.y;
+  bool collided = solid->check_overlap({prediction, {16.0_fp, 16.0_fp}});
 
   if (collided) {
-    velocity = { 0.0_fp, 0.0_fp };
+    velocity = {0.0_fp, 0.0_fp};
   }
 }

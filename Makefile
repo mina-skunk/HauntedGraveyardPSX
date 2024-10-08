@@ -16,6 +16,8 @@ graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
 graphics/UI/Image.cpp \
 graphics/UI/TextBox.cpp \
+Area.cpp \
+GraveKeeper.cpp \
 Player.cpp \
 SplashScene.cpp \
 TitleScene.cpp \

@@ -30,8 +30,12 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   // setup input
   HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
     if (event.type == psyqo::SimplePad::Event::ButtonPressed) {
-      if (event.button == psyqo::SimplePad::Cross) {
-        player.interact();
+      if (show_text_box) {
+        show_text_box = false;
+      } else {
+        if (event.button == psyqo::SimplePad::Cross) {
+          player.interact();
+        }
       }
     }
   });
@@ -57,24 +61,26 @@ void HauntedGraveyard::Level1EntranceScene::teardown(Scene::TearDownReason reaso
 }
 
 void HauntedGraveyard::Level1EntranceScene::update() {
-  psyqo::Vec2 direction;
-  if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Up)) {
-    direction.y = -1.0_fp;
-    player.orientation = Character::UP;
+  if (!show_text_box) {
+    psyqo::Vec2 direction;
+    if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Up)) {
+      direction.y = -1.0_fp;
+      player.orientation = Character::UP;
+    }
+    if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Down)) {
+      direction.y = 1.0_fp;
+      player.orientation = Character::DOWN;
+    }
+    if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Left)) {
+      direction.x = -1.0_fp;
+      player.orientation = Character::LEFT;
+    }
+    if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Right)) {
+      direction.x = 1.0_fp;
+      player.orientation = Character::RIGHT;
+    }
+    player.move(direction);
   }
-  if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Down)) {
-    direction.y = 1.0_fp;
-    player.orientation = Character::DOWN;
-  }
-  if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Left)) {
-    direction.x = -1.0_fp;
-    player.orientation = Character::LEFT;
-  }
-  if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Right)) {
-    direction.x = 1.0_fp;
-    player.orientation = Character::RIGHT;
-  }
-  player.move(direction);
   player.apply_bounds(&world_bounds);
   for (auto &solid_block : solid_blocks) {
     player.apply_solid(&solid_block);
