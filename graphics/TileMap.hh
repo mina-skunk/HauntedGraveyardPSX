@@ -7,8 +7,8 @@
 #include "psyqo/fragments.hh"
 #include "psyqo/primitives.hh"
 
-// max tiles in a layer (15 + 1) * (20 + 1)
-#define MAX_TILES 336
+// max tiles in a layer (15 + 2) * (20 + 2)
+#define MAX_TILES 374
 
 #define TILE_SET_WIDTH 16
 
