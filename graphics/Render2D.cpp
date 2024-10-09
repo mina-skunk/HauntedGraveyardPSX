@@ -23,7 +23,8 @@ void HauntedGraveyard::graphics::Render2D::draw_sprite(HauntedGraveyard::graphic
   auto fragment = sprite->get_fragment(gpu->getParity());
   fragment->primitive.sprite.position.x = camera_space_position.x.integer();
   fragment->primitive.sprite.position.y = camera_space_position.y.integer();
-  gpu->chain(*fragment);
+  ordering_tables[gpu->getParity()].insert(*fragment, sprite->z_order);
+  // gpu->chain(*fragment);
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap) {
@@ -66,7 +67,8 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
           sprite_fragment_buffer[primitive_index].primitive.sprite.texInfo.v = (tile_set_index / TILE_SET_WIDTH) * 16;
         }
 
-        gpu->chain(sprite_fragment_buffer[primitive_index]);
+        ordering_tables[gpu->getParity()].insert(sprite_fragment_buffer[primitive_index], tilemap->z_order);
+        // gpu->chain(sprite_fragment_buffer[primitive_index]);
 
         primitive_index++;
       }
@@ -78,7 +80,8 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
 
 void HauntedGraveyard::graphics::Render2D::draw_background(psyqo::Color color) {
   gpu->getNextClear(background_fragments[gpu->getParity()].primitive, color);
-  gpu->chain(background_fragments[gpu->getParity()]);
+  ordering_tables[gpu->getParity()].insert(background_fragments[gpu->getParity()], MAX_Z);
+  // gpu->chain(background_fragments[gpu->getParity()]);
 }
 
 psyqo::Vec2 HauntedGraveyard::graphics::Render2D::get_relative_position(psyqo::Vec2 world_space_position) {

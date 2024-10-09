@@ -50,13 +50,21 @@ private:
        4,
        {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
        level1_map_surface}};
-  HauntedGraveyard::Player player = {{.x = 160.0_fp, .y = 288.0_fp}};
-  HauntedGraveyard::GraveKeeper grave_keeper = {{.x = 128.0_fp, .y = 240.0_fp}, "", ""};
+  HauntedGraveyard::Player player = {spawn_point};
+  HauntedGraveyard::GraveKeeper grave_keeper = {
+      {.x = 128.0_fp, .y = 240.0_fp},
+      {"The gate to the Graveyard is locked.", "Search the area for the key to proceed."},
+      {"Good luck in the Graveyard.", "Beware the wandering spirits!"}};
   // HauntedGraveyard::Ghost ghost_0;
   Level2GraveyardScene next_scene;
   HauntedGraveyard::Area world_bounds = {
-      .position = {0.0_fp, 48.0_fp},
-      .size = {320.0_fp, 272.0_fp}};
+      .position = {0.0_fp, 16.0_fp},
+      .size = {320.0_fp, 320.0_fp}};
+  HauntedGraveyard::Area fences[2] = {
+      {.position = {0.0_fp, 32.0_fp},
+       .size = {160.0_fp, 16.0_fp}},
+      {.position = {176.0_fp, 32.0_fp},
+       .size = {144.0_fp, 16.0_fp}}};
   HauntedGraveyard::Area solid_blocks[7] = {
       {.position = {128.0_fp, 48.0_fp},
        .size = {16.0_fp, 16.0_fp}},

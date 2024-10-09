@@ -1,5 +1,7 @@
 #pragma once
 
+#include <EASTL/string_view.h>
+
 #include "Element.hh"
 #include "RenderUI.hh"
 #include "psyqo/fragments.hh"
@@ -14,9 +16,9 @@ class TextBox : public Element {
   friend class HauntedGraveyard::graphics::UI::RenderUI;
 
 public:
-  const char* line1;
-  const char* line2;
-  TextBox(psyqo::Vertex position, const char* line1, const char* line2) : Element(position), line1(line1), line2(line2) {
+  eastl::string_view line1;
+  eastl::string_view line2;
+  TextBox(psyqo::Vertex position, eastl::string_view line1, eastl::string_view line2) : Element(position), line1(line1), line2(line2) {
     for (auto& fragment : fragments) {
       RenderUI::texture_page.get_primative(&fragment.prologue);
       fragment.count = TEXT_BOX_SPRITE_COUNT;

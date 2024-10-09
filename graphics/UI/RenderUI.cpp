@@ -4,7 +4,6 @@
 #include "Image.hh"
 #include "TextBox.hh"
 
-
 HauntedGraveyard::graphics::TexturePage HauntedGraveyard::graphics::UI::RenderUI::texture_page = {12, 0};
 psyqo::GPU *HauntedGraveyard::graphics::UI::RenderUI::gpu;
 psyqo::Font<> *HauntedGraveyard::graphics::UI::RenderUI::font;

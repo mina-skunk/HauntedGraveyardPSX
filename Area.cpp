@@ -1,5 +1,7 @@
 #include "Area.hh"
 
+// psyqo::FixedPoint<> HauntedGraveyard::Area::wiggle_room = 0.1_fp;
+
 bool HauntedGraveyard::Area::check_overlap(psyqo::Vec2 point) {
   return point.x > position.x &&
          point.x < position.x + size.x &&

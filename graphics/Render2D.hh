@@ -6,6 +6,9 @@
 #include "psyqo/primitives/common.hh"
 #include "psyqo/vector.hh"
 
+#define LAYERS_COUNT 8
+#define MAX_Z LAYERS_COUNT - 1
+
 namespace HauntedGraveyard::graphics {
 class Camera2D;
 class Sprite;
@@ -28,7 +31,7 @@ public:
 private:
   static psyqo::GPU *gpu;
   static HauntedGraveyard::graphics::Camera2D *active_camera;
-  static psyqo::OrderingTable<8> ordering_tables[2];
+  static psyqo::OrderingTable<LAYERS_COUNT> ordering_tables[2];
   static psyqo::Fragments::SimpleFragment<psyqo::Prim::FastFill> background_fragments[2];
   static psyqo::Vec2 get_relative_position(psyqo::Vec2 world_position);
 };

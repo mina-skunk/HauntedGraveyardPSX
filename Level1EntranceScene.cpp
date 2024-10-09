@@ -34,7 +34,12 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
         show_text_box = false;
       } else {
         if (event.button == psyqo::SimplePad::Cross) {
-          player.interact();
+          Area player_interact_area = player.get_interact_area();
+          if (player_interact_area.check_overlap(grave_keeper.area_trigger)) {
+            text_box.line1 = grave_keeper.pre_message[0];
+            text_box.line2 = grave_keeper.pre_message[1];
+            show_text_box = true;
+          }
         }
       }
     }
@@ -82,6 +87,9 @@ void HauntedGraveyard::Level1EntranceScene::update() {
     player.move(direction);
   }
   player.apply_bounds(&world_bounds);
+  for (auto &fence : fences) {
+    player.apply_solid(&fence);
+  }
   for (auto &solid_block : solid_blocks) {
     player.apply_solid(&solid_block);
   }
@@ -102,10 +110,15 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   // Player
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
+
+  HauntedGraveyard::graphics::Render2D::finish_drawing();
+
   // HUD
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
-  GameApp::font.chainprint(gpu(), "0/3", {.x = 33, .y = 13}, {0x10, 0x10, 0x10});  // text shadow
-  GameApp::font.chainprint(gpu(), "0/3", {.x = 32, .y = 12}, {0xff, 0xff, 0xff});
+  GameApp::font.chainprintf(gpu(), {.x = 33, .y = 13}, {0x10, 0x10, 0x10}, "%d/3", keys);  // text shadow
+  GameApp::font.chainprintf(gpu(), {.x = 32, .y = 12}, {0xff, 0xff, 0xff}, "%d/3", keys);
 
-  // HauntedGraveyard::graphics::Render2D::finish_drawing();
+  if (show_text_box) {
+    HauntedGraveyard::graphics::UI::RenderUI::draw_text_box(&text_box);
+  }
 }

@@ -68,7 +68,24 @@ void HauntedGraveyard::Player::move(psyqo::Vec2 direction) {
   is_moving = (velocity.x != 0.0_fp || velocity.y != 0.0_fp);
 }
 
-void HauntedGraveyard::Player::interact() {}
+HauntedGraveyard::Area HauntedGraveyard::Player::get_interact_area() {
+  Area interact_area = {position, {16.0_fp, 16.0_fp}};
+  switch (orientation) {
+    case Character::UP:
+      interact_area.position.y = position.y - 16.0_fp;
+      break;
+    case Character::DOWN:
+      interact_area.position.y = position.y + 16.0_fp;
+      break;
+    case Character::LEFT:
+      interact_area.position.x = position.x - 16.0_fp;
+      break;
+    case Character::RIGHT:
+      interact_area.position.x = position.x + 16.0_fp;
+      break;
+  }
+  return interact_area;
+}
 
 void HauntedGraveyard::Player::apply_bounds(Area *bounds) {
   psyqo::Vec2 prediction;
