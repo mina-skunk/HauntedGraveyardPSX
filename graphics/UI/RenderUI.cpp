@@ -2,6 +2,8 @@
 
 #include "Button.hh"
 #include "Image.hh"
+#include "Label.hh"
+#include "MultiLine.hh"
 #include "TextBox.hh"
 
 HauntedGraveyard::graphics::TexturePage HauntedGraveyard::graphics::UI::RenderUI::texture_page = {12, 0};
@@ -40,6 +42,21 @@ void HauntedGraveyard::graphics::UI::RenderUI::draw_text_box(HauntedGraveyard::g
   // lines 2
   text_y += 16;
   font->chainprint(*gpu, text_box->line2, {{.x = text_x, .y = text_y}}, {{.r = 0x10, .g = 0x10, .b = 0x10}});
+}
+
+void HauntedGraveyard::graphics::UI::RenderUI::draw_label(HauntedGraveyard::graphics::UI::Label *label) {
+  if (label->shadow) {
+    font->chainprint(*gpu, label->text, {label->position.x + 1, label->position.y + 1}, {{.r = 0x10, .g = 0x10, .b = 0x10}});
+  }
+  font->chainprint(*gpu, label->text, label->position, {{.r = 0xff, .g = 0xff, .b = 0xff}});
+}
+
+template <size_t L>
+void HauntedGraveyard::graphics::UI::RenderUI::draw_multiline(HauntedGraveyard::graphics::UI::MultiLine<L> *multiline) {
+  psyqo::Vertex temp_position = multiline->position;
+  for (auto line : multiline->lines) {
+    font->chainprint(*gpu, line, temp_position, {{.r = 0x10, .g = 0x10, .b = 0x10}});
+  }
 }
 
 void HauntedGraveyard::graphics::UI::RenderUI::send_ui_texture_page() {

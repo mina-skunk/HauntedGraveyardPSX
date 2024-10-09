@@ -1,5 +1,7 @@
 #include "Level1EntranceScene.hh"
 
+#include <EASTL/fixed_string.h>
+
 #include "Character.hh"
 #include "GameApp.hh"
 #include "Player.hh"
@@ -7,6 +9,7 @@
 #include "graphics/UI/RenderUI.hh"
 #include "psyqo/simplepad.hh"
 #include "psyqo/vector.hh"
+#include "psyqo/xprintf.h"
 #include "steve.h"
 #include "tileset.h"
 #include "ui.h"
@@ -28,7 +31,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   gpu().uploadToVRAM(ui_tex, ui_tex_region);
 
   // setup input
-  HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event& event) {
+  HauntedGraveyard::GameApp::input.setOnEvent([this](const psyqo::SimplePad::Event &event) {
     if (event.type == psyqo::SimplePad::Event::ButtonPressed) {
       if (show_text_box) {
         show_text_box = false;
@@ -36,6 +39,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
         if (event.button == psyqo::SimplePad::Cross) {
           Area player_interact_area = player.get_interact_area();
           if (player_interact_area.check_overlap(grave_keeper.area_trigger)) {
+            
             text_box.line1 = grave_keeper.pre_message[0];
             text_box.line2 = grave_keeper.pre_message[1];
             show_text_box = true;
@@ -48,7 +52,6 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   // init level
   HauntedGraveyard::graphics::Render2D::set_camera(&camera);
   player.position = spawn_point;
-  hud_key_icon.uv = {.u = 0, .v = 96};
 }
 
 void HauntedGraveyard::Level1EntranceScene::frame() {
@@ -114,9 +117,10 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   HauntedGraveyard::graphics::Render2D::finish_drawing();
 
   // HUD
-  HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud_key_icon);
-  GameApp::font.chainprintf(gpu(), {.x = 33, .y = 13}, {0x10, 0x10, 0x10}, "%d/3", keys);  // text shadow
-  GameApp::font.chainprintf(gpu(), {.x = 32, .y = 12}, {0xff, 0xff, 0xff}, "%d/3", keys);
+  HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud.key_icon);
+  eastl::fixed_string<char, 3> key_progress_string;
+  fsprintf(key_progress_string, "%d/1", keys);
+  HauntedGraveyard::graphics::UI::RenderUI::draw_label(&hud.key_progress);
 
   if (show_text_box) {
     HauntedGraveyard::graphics::UI::RenderUI::draw_text_box(&text_box);

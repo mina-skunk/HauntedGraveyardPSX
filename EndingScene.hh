@@ -1,5 +1,6 @@
 #pragma once
 
+#include "graphics/UI/MultiLine.hh"
 #include "psyqo/scene.hh"
 
 namespace HauntedGraveyard {
@@ -14,6 +15,17 @@ class EndingScene final : public psyqo::Scene {
 public:
   // TODO
 private:
-  // TODO
+  HauntedGraveyard::graphics::UI::MultiLine<13> credits = {
+    { 16, 16 },
+    {
+      "          Credits",
+      "Assets          LimeZu, Zingot",
+      "Music            Artur Aravidi",
+      "Developer           mina_skunk",
+      "Editor                  yvaine",
+      "SDK    psyqo (pcsx-redux team)",
+      "      (thanks to nicolasnoble)"
+    }
+  };
 };
 }  // namespace HauntedGraveyard
