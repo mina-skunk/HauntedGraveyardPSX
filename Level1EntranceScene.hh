@@ -53,7 +53,7 @@ private:
   HauntedGraveyard::Player player = {spawn_point};
   HauntedGraveyard::GraveKeeper grave_keeper = {
       {.x = 128.0_fp, .y = 240.0_fp},
-      {"The gate to the Graveyard is locked.", "Search the area for the key to proceed."},
+      {"The gate to the Graveyard is locked.", "Search the area for the key."},
       {"Good luck in the Graveyard.", "Beware the wandering spirits!"}};
   // HauntedGraveyard::Ghost ghost_0;
   Level2GraveyardScene next_scene;

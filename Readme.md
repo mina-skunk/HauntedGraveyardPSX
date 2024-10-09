@@ -57,7 +57,7 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
   1. Entrance Scene
      - Alex enters the scene with basic Halloween costume.
      - Grave Keeper appears (stationary, with a dialogue box):
-       - Grave Keeper: “The gate to the Graveyard is locked. Search the area for the key to proceed.”
+       - Grave Keeper: “The gate to the Graveyard is locked. Search the area for the key.”
   2. Player finds the key and unlocks the gate
      - Grave Keeper (if interacted with): “Good luck in the Graveyard. Beware the wandering spirits!”
 - Level 2: Graveyard
@@ -94,6 +94,7 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 - Music
   - Title: [Spooky Halloween Cartoon](https://freemusicarchive.org/music/artur-aravidi/single/spooky-halloween-cartoonmp3/) by [Artur Aravidi](https://freemusicarchive.org/music/artur-aravidi/)
 - Developer, Mina (me)
+- Editor: Yvaine
 - SDK: psyqo
   - [pcsx-redux team](/grumpycoders/pcsx-redux), @nicolasnoble, @axetion, and everyone on the [discord](https://discord.gg/QByKPpH)
 
