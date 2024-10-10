@@ -21,6 +21,7 @@ GraveKeeper.cpp \
 Player.cpp \
 SplashScene.cpp \
 TitleScene.cpp \
+LevelScene.cpp \
 Level1EntranceScene.cpp \
 GameApp.cpp \
 main.cpp

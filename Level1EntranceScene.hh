@@ -5,10 +5,8 @@
 #include "GraveKeeper.hh"
 #include "Level2GraveyardScene.hh"
 #include "LevelScene.hh"
-#include "Player.hh"
 #include "graphics/Camera2D.hh"
 #include "graphics/TileMap.hh"
-#include "graphics/UI/TextBox.hh"
 #include "level1_map.h"
 #include "level1_map_detail.h"
 #include "level1_map_surface.h"
@@ -23,16 +21,13 @@ namespace HauntedGraveyard {
  */
 class Level1EntranceScene final : public HauntedGraveyard::LevelScene {
   void start(Scene::StartReason reason) override;
-  void frame() override;
   void teardown(Scene::TearDownReason reason) override;
   void update() override;
   void draw() override;
 
 public:
-  // TODO
+  Level1EntranceScene() : LevelScene({160.0_fp, 288.0_fp}, {{160.0_fp, 16.0_fp}, {16.0_fp, 16.0_fp}}) {}
 private:
-  psyqo::Vec2 spawn_point = {160.0_fp, 288.0_fp};
-  HauntedGraveyard::Area exit = {{160.0_fp, 16.0_fp}, {16.0_fp, 16.0_fp}};
   HauntedGraveyard::graphics::Camera2D camera = {{.x = 40.0_fp, .y = 128.0_fp}};
   HauntedGraveyard::graphics::TileMap tile_layers[3] = {
       {{.x = 0.0_fp, .y = 0.0_fp},
@@ -50,7 +45,6 @@ private:
        4,
        {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
        level1_map_surface}};
-  HauntedGraveyard::Player player = {spawn_point};
   HauntedGraveyard::GraveKeeper grave_keeper = {
       {.x = 128.0_fp, .y = 240.0_fp},
       {"The gate to the Graveyard is locked.", "Search the area for the key."},
@@ -80,10 +74,5 @@ private:
        .size = {16.0_fp, 16.0_fp}},
       {.position = {208.0_fp, 240.0_fp},
        .size = {16.0_fp, 16.0_fp}}};
-  HauntedGraveyard::graphics::UI::TextBox text_box = {
-      {.x = 0, .y = 176},
-      "",
-      ""};
-  bool show_text_box = false;
 };
 }  // namespace HauntedGraveyard

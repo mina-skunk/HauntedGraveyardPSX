@@ -26,5 +26,6 @@ public:
     bottom_sprite.uv = {112, 64};
   }
   void update() override;
+  void face(HauntedGraveyard::Character target);
 };
 }  // namespace HauntedGraveyard

@@ -20,16 +20,35 @@ void HauntedGraveyard::GraveKeeper::update() {
       bottom_sprite.uv = {u, v};
       break;
     case Character::LEFT:
-      // TODO
+      u = 96;
+      v = 48;
       top_sprite.uv = {u, v};
       v += 16;
       bottom_sprite.uv = {u, v};
       break;
     case Character::RIGHT:
-      // TODO
+      u = 64;
+      v = 48;
       top_sprite.uv = {u, v};
       v += 16;
       bottom_sprite.uv = {u, v};
+      break;
+  }
+}
+
+void HauntedGraveyard::GraveKeeper::face(HauntedGraveyard::Character target) {
+  switch (target.orientation) {
+    case HauntedGraveyard::Character::UP:
+      orientation = HauntedGraveyard::Character::DOWN;
+      break;
+    case HauntedGraveyard::Character::DOWN:
+      orientation = HauntedGraveyard::Character::UP;
+      break;
+    case HauntedGraveyard::Character::LEFT:
+      orientation = HauntedGraveyard::Character::RIGHT;
+      break;
+    case HauntedGraveyard::Character::RIGHT:
+      orientation = HauntedGraveyard::Character::LEFT;
       break;
   }
 }

@@ -43,6 +43,7 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
             text_box.line1 = grave_keeper.pre_message[0];
             text_box.line2 = grave_keeper.pre_message[1];
             show_text_box = true;
+            grave_keeper.face(player);
           }
         }
       }
@@ -52,15 +53,6 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
   // init level
   HauntedGraveyard::graphics::Render2D::set_camera(&camera);
   player.position = spawn_point;
-}
-
-void HauntedGraveyard::Level1EntranceScene::frame() {
-  // update
-  update();
-  // draw
-  // background
-  HauntedGraveyard::graphics::Render2D::draw_background(background_color);
-  draw();
 }
 
 void HauntedGraveyard::Level1EntranceScene::teardown(Scene::TearDownReason reason) {
@@ -100,6 +92,8 @@ void HauntedGraveyard::Level1EntranceScene::update() {
   player.update();
 
   camera.follow(player.position);
+
+  grave_keeper.update();
 }
 
 void HauntedGraveyard::Level1EntranceScene::draw() {

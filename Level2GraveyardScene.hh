@@ -19,7 +19,7 @@ class Level2GraveyardScene final : public HauntedGraveyard::LevelScene {
   // void draw() override;
 
 public:
-  // TODO
+  Level2GraveyardScene() : LevelScene({160.0_fp, 288.0_fp}, {{160.0_fp, 16.0_fp}, {16.0_fp, 16.0_fp}}) {}
 private:
   // HauntedGraveyard::graphics::TileMap tile_layer_0;
   // HauntedGraveyard::graphics::TileMap tile_layer_1;
