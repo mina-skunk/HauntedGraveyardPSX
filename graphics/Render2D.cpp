@@ -2,6 +2,7 @@
 
 #include "Camera2D.hh"
 #include "Sprite.hh"
+#include "BigSprite.hh"
 #include "TileMap.hh"
 #include "psyqo/primitives/common.hh"
 
@@ -76,6 +77,15 @@ void HauntedGraveyard::graphics::Render2D::draw_tilemap(HauntedGraveyard::graphi
       map_index++;
     }
   }
+}
+
+void HauntedGraveyard::graphics::Render2D::draw_bigsprite(HauntedGraveyard::graphics::BigSprite *sprite) {
+  psyqo::Vec2 camera_space_position = get_relative_position(sprite->position);
+  auto fragment = sprite->get_fragment(gpu->getParity());
+  fragment->primitive.sprite.position.x = camera_space_position.x.integer();
+  fragment->primitive.sprite.position.y = camera_space_position.y.integer();
+  ordering_tables[gpu->getParity()].insert(*fragment, sprite->z_order);
+  // gpu->chain(*fragment);
 }
 
 void HauntedGraveyard::graphics::Render2D::draw_background(psyqo::Color color) {

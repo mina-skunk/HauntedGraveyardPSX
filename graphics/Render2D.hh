@@ -13,6 +13,7 @@ namespace HauntedGraveyard::graphics {
 class Camera2D;
 class Sprite;
 class TileMap;
+class BigSprite;
 /**
  * Handles generating primatives / framgments for objects in 2d space
  */
@@ -25,6 +26,7 @@ public:
   static void set_camera(HauntedGraveyard::graphics::Camera2D *camera);
   static void draw_sprite(HauntedGraveyard::graphics::Sprite *sprite);
   static void draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap);
+  static void draw_bigsprite(HauntedGraveyard::graphics::BigSprite *sprite);
   static void draw_background(psyqo::Color color);
   static void finish_drawing();
 

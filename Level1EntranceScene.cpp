@@ -39,11 +39,23 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
         if (event.button == psyqo::SimplePad::Cross) {
           Area player_interact_area = player.get_interact_area();
           if (player_interact_area.check_overlap(grave_keeper.area_trigger)) {
-            
             text_box.line1 = grave_keeper.pre_message[0];
             text_box.line2 = grave_keeper.pre_message[1];
             show_text_box = true;
             grave_keeper.face(player);
+          }
+          if (jack_o_lantern_with_key.has_key && player_interact_area.check_overlap(jack_o_lantern_with_key.area_trigger)) {
+            jack_o_lantern_with_key.has_key = false;
+            keys++;
+            text_box.line1 = "You found a key!!";
+            text_box.line2 = "";
+            show_text_box = true;
+          }
+          if (keys == 1 && player_interact_area.check_overlap(gate.solid_area)) {
+            gate.open = true;
+            gate.sprite.uv.u = 192;
+            gate.sprite.uv.v = 48;
+
           }
         }
       }
@@ -62,6 +74,7 @@ void HauntedGraveyard::Level1EntranceScene::teardown(Scene::TearDownReason reaso
 
 void HauntedGraveyard::Level1EntranceScene::update() {
   if (!show_text_box) {
+    // player move
     psyqo::Vec2 direction;
     if (HauntedGraveyard::GameApp::input.isButtonPressed(psyqo::SimplePad::Pad1, psyqo::SimplePad::Up)) {
       direction.y = -1.0_fp;
@@ -81,19 +94,34 @@ void HauntedGraveyard::Level1EntranceScene::update() {
     }
     player.move(direction);
   }
+  // bounds and fences
   player.apply_bounds(&world_bounds);
   for (auto &fence : fences) {
     player.apply_solid(&fence);
   }
-  for (auto &solid_block : solid_blocks) {
-    player.apply_solid(&solid_block);
+  // pumpkins
+  for (auto &jack_o_lantern : jack_o_lanterns) {
+    player.apply_solid(&jack_o_lantern.area_trigger);
+    jack_o_lantern.update();
   }
+  player.apply_solid(&jack_o_lantern_with_key.area_trigger);
+  jack_o_lantern_with_key.update();
+  // gate
+  if (!gate.open) {
+    player.apply_solid(&gate.solid_area);
+  }
+  // npcs
   player.apply_solid(&grave_keeper.area_trigger);
+  grave_keeper.update();
+  // player
   player.update();
-
+  // camera
   camera.follow(player.position);
 
-  grave_keeper.update();
+  // check for end
+  if (keys == 1 && gate.open && exit.check_overlap({player.position, {16.0_fp, 16.0_fp}})) {
+    pushScene(&next_scene);
+  }
 }
 
 void HauntedGraveyard::Level1EntranceScene::draw() {
@@ -101,12 +129,19 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   for (auto &tile_layer : tile_layers) {
     HauntedGraveyard::graphics::Render2D::draw_tilemap(&tile_layer);
   }
+  // pumpkins
+  for (auto &jack_o_lantern : jack_o_lanterns) {
+    HauntedGraveyard::graphics::Render2D::draw_sprite(&jack_o_lantern.sprite);
+  }
+  HauntedGraveyard::graphics::Render2D::draw_sprite(&jack_o_lantern_with_key.sprite);
   // GraveKeeper
   HauntedGraveyard::graphics::Render2D::draw_sprite(&grave_keeper.bottom_sprite);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&grave_keeper.top_sprite);
   // Player
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
+  // gate
+  HauntedGraveyard::graphics::Render2D::draw_bigsprite(&gate.sprite);
 
   HauntedGraveyard::graphics::Render2D::finish_drawing();
 
@@ -114,6 +149,7 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud.key_icon);
   eastl::fixed_string<char, 3> key_progress_string;
   fsprintf(key_progress_string, "%d/1", keys);
+  hud.key_progress.text = key_progress_string;
   HauntedGraveyard::graphics::UI::RenderUI::draw_label(&hud.key_progress);
 
   if (show_text_box) {

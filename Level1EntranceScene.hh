@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Area.hh"
+#include "Gate.hh"
 #include "Ghost.hh"
 #include "GraveKeeper.hh"
+#include "JackOLantern.hh"
 #include "Level2GraveyardScene.hh"
 #include "LevelScene.hh"
 #include "graphics/Camera2D.hh"
@@ -26,7 +28,11 @@ class Level1EntranceScene final : public HauntedGraveyard::LevelScene {
   void draw() override;
 
 public:
-  Level1EntranceScene() : LevelScene({160.0_fp, 288.0_fp}, {{160.0_fp, 16.0_fp}, {16.0_fp, 16.0_fp}}) {}
+  Level1EntranceScene() : LevelScene({160.0_fp, 288.0_fp}, {{160.0_fp, 16.0_fp}, {16.0_fp, 16.0_fp}}) {
+    gate.sprite.uv.u = 160;
+    gate.sprite.uv.v = 0;
+  }
+
 private:
   HauntedGraveyard::graphics::Camera2D camera = {{.x = 40.0_fp, .y = 128.0_fp}};
   HauntedGraveyard::graphics::TileMap tile_layers[3] = {
@@ -56,23 +62,19 @@ private:
       .size = {320.0_fp, 320.0_fp}};
   HauntedGraveyard::Area fences[2] = {
       {.position = {0.0_fp, 32.0_fp},
-       .size = {160.0_fp, 16.0_fp}},
-      {.position = {176.0_fp, 32.0_fp},
-       .size = {144.0_fp, 16.0_fp}}};
-  HauntedGraveyard::Area solid_blocks[7] = {
-      {.position = {128.0_fp, 48.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {192.0_fp, 48.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {64.0_fp, 96.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {240.0_fp, 112.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {96.0_fp, 128.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {48.0_fp, 240.0_fp},
-       .size = {16.0_fp, 16.0_fp}},
-      {.position = {208.0_fp, 240.0_fp},
-       .size = {16.0_fp, 16.0_fp}}};
+       .size = {158.0_fp, 16.0_fp}},
+      {.position = {178.0_fp, 32.0_fp},
+       .size = {142.0_fp, 16.0_fp}}};
+  HauntedGraveyard::JackOLantern jack_o_lanterns[6] = {
+      {{128.0_fp, 48.0_fp}},
+      {{192.0_fp, 48.0_fp}},
+      {{64.0_fp, 96.0_fp}},
+      {{96.0_fp, 128.0_fp}},
+      {{48.0_fp, 240.0_fp}},
+      {{208.0_fp, 240.0_fp}}};
+  HauntedGraveyard::JackOLantern jack_o_lantern_with_key = {{240.0_fp, 112.0_fp}, true};
+  HauntedGraveyard::Gate gate = {
+      {{144.0_fp, 0.0_fp}, {.col = 8, .row = 0}, 4, {32, 48}},
+      {{160.0_fp, 32.0_fp}, {16.0_fp, 16.0_fp}}};
 };
 }  // namespace HauntedGraveyard

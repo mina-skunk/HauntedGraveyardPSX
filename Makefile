@@ -11,6 +11,7 @@ graphics/Render2D.cpp \
 graphics/Camera2D.cpp \
 graphics/Sprite.cpp \
 graphics/TexturePage.cpp \
+graphics/BigSprite.cpp \
 graphics/TileMap.cpp \
 graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
@@ -19,6 +20,7 @@ graphics/UI/TextBox.cpp \
 Area.cpp \
 GraveKeeper.cpp \
 Player.cpp \
+JackOLantern.cpp \
 SplashScene.cpp \
 TitleScene.cpp \
 LevelScene.cpp \
