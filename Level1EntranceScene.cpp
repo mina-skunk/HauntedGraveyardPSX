@@ -39,8 +39,13 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
         if (event.button == psyqo::SimplePad::Cross) {
           Area player_interact_area = player.get_interact_area();
           if (player_interact_area.check_overlap(grave_keeper.area_trigger)) {
-            text_box.line1 = grave_keeper.pre_message[0];
-            text_box.line2 = grave_keeper.pre_message[1];
+            if (keys < 1) {
+              text_box.line1 = grave_keeper.pre_message[0];
+              text_box.line2 = grave_keeper.pre_message[1];
+            } else {
+              text_box.line1 = grave_keeper.post_message[0];
+              text_box.line2 = grave_keeper.post_message[1];
+            }
             show_text_box = true;
             grave_keeper.face(player);
           }
