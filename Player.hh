@@ -18,7 +18,7 @@ public:
   HauntedGraveyard::graphics::Sprite top_sprite = {{.x = 0.0_fp, .y = 0.0_fp}, {.col = 8, .row = 1}, 3};
   HauntedGraveyard::graphics::Sprite bottom_sprite = {position, {.col = 8, .row = 1}, 4};
   void update() override;
-  Player(psyqo::Vec2 position) : Character(position) {
+  Player(psyqo::Vec2 position) : Character(position, { 16.0_fp, 16.0_fp }) {
     top_sprite.position.x = position.x;
     top_sprite.position.y = position.y - 16;
     bottom_sprite.position = position;
