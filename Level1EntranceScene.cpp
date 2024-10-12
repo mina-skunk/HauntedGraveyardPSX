@@ -5,6 +5,7 @@
 #include "Character.hh"
 #include "GameApp.hh"
 #include "Player.hh"
+#include "core/Area.hh"
 #include "graphics/Render2D.hh"
 #include "graphics/UI/RenderUI.hh"
 #include "psyqo/simplepad.hh"
@@ -37,8 +38,8 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
         show_text_box = false;
       } else {
         if (event.button == psyqo::SimplePad::Cross) {
-          Area player_interact_area = player.get_interact_area();
-          if (player_interact_area.check_overlap(grave_keeper.area_trigger)) {
+          HauntedGraveyard::core::Area2D player_interact_area = player.get_interact_area();
+          if (player_interact_area.check_overlap(grave_keeper)) {
             if (keys < 1) {
               text_box.line1 = grave_keeper.pre_message[0];
               text_box.line2 = grave_keeper.pre_message[1];
@@ -49,18 +50,17 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
             show_text_box = true;
             grave_keeper.face(player);
           }
-          if (jack_o_lantern_with_key.has_key && player_interact_area.check_overlap(jack_o_lantern_with_key.area_trigger)) {
+          if (jack_o_lantern_with_key.has_key && player_interact_area.check_overlap(jack_o_lantern_with_key)) {
             jack_o_lantern_with_key.has_key = false;
             keys++;
             text_box.line1 = "You found a key!!";
             text_box.line2 = "";
             show_text_box = true;
           }
-          if (keys == 1 && player_interact_area.check_overlap(gate.solid_area)) {
+          if (keys == 1 && player_interact_area.check_overlap(gate)) {
             gate.open = true;
             gate.sprite.uv.u = 192;
             gate.sprite.uv.v = 48;
-
           }
         }
       }
@@ -106,17 +106,17 @@ void HauntedGraveyard::Level1EntranceScene::update() {
   }
   // pumpkins
   for (auto &jack_o_lantern : jack_o_lanterns) {
-    player.apply_solid(&jack_o_lantern.area_trigger);
+    player.apply_solid(&jack_o_lantern);
     jack_o_lantern.update();
   }
-  player.apply_solid(&jack_o_lantern_with_key.area_trigger);
+  player.apply_solid(&jack_o_lantern_with_key);
   jack_o_lantern_with_key.update();
   // gate
   if (!gate.open) {
-    player.apply_solid(&gate.solid_area);
+    player.apply_solid(&gate);
   }
   // npcs
-  player.apply_solid(&grave_keeper.area_trigger);
+  player.apply_solid(&grave_keeper);
   grave_keeper.update();
   // player
   player.update();
