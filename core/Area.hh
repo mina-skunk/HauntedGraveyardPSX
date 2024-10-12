@@ -1,20 +1,16 @@
 #pragma once
 
 #include "Shape.hh"
+#include "psyqo/vector.hh"
 
-using namespace psyqo::fixed_point_literals;
-
-namespace HauntedGraveyard {
+namespace HauntedGraveyard::core {
 /**
  * Area in 2d space
  */
-template <unsigned N>
-  requires((N >= 2) && (N <= 4))
-class Area : public Shape<N> {
+class Area2D : public Rectangle {
 public:
-  Area(psyqo::Vector<N> position, psyqo::Vector<N> size) : Shape<N>(position, size) {}
+  Area2D(psyqo::Vec2 position, psyqo::Vec2 size) : Rectangle(position, size) {}
   bool check_overlap(psyqo::Vec2 point);
-  bool check_overlap(Area<N> area_b);
+  bool check_overlap(Area2D area_b);
 };
-typedef Area<2> Area2D;
-}  // namespace HauntedGraveyard
+}  // namespace HauntedGraveyard::core

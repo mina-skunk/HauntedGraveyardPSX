@@ -4,7 +4,7 @@
 #include "core/Area.hh"
 
 namespace HauntedGraveyard {
-class Character : public Area<2> {
+class Character : public HauntedGraveyard::core::Area2D {
 public:
   enum Orientation {
     UP,
@@ -14,7 +14,7 @@ public:
   };
   Orientation orientation = Orientation::DOWN;
   bool is_moving = false;
-  Character(psyqo::Vec2 position, psyqo::Vec2 size) : Area<2>(position, size) {
+  Character(psyqo::Vec2 position, psyqo::Vec2 size) : HauntedGraveyard::core::Area2D(position, size) {
 
   }
 };

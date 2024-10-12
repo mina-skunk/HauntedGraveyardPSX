@@ -5,6 +5,7 @@ TYPE = ps-exe
 
 # The list of sources files to compile within the binary.
 SRCS = \
+core/Area.cpp \
 system/Sound.cpp \
 system/SimpleCDAudio.cpp \
 graphics/Render2D.cpp \
@@ -17,7 +18,6 @@ graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
 graphics/UI/Image.cpp \
 graphics/UI/TextBox.cpp \
-Area.cpp \
 GraveKeeper.cpp \
 Player.cpp \
 JackOLantern.cpp \

@@ -68,8 +68,8 @@ void HauntedGraveyard::Player::move(psyqo::Vec2 direction) {
   is_moving = (velocity.x != 0.0_fp || velocity.y != 0.0_fp);
 }
 
-HauntedGraveyard::Area HauntedGraveyard::Player::get_interact_area() {
-  Area interact_area = {position, {16.0_fp, 16.0_fp}};
+HauntedGraveyard::core::Area2D HauntedGraveyard::Player::get_interact_area() {
+  HauntedGraveyard::core::Area2D interact_area = {position, {16.0_fp, 16.0_fp}};
   switch (orientation) {
     case Character::UP:
       interact_area.position.y = position.y - 16.0_fp;
@@ -87,7 +87,7 @@ HauntedGraveyard::Area HauntedGraveyard::Player::get_interact_area() {
   return interact_area;
 }
 
-void HauntedGraveyard::Player::apply_bounds(Area *bounds) {
+void HauntedGraveyard::Player::apply_bounds(HauntedGraveyard::core::Area2D *bounds) {
   psyqo::Vec2 prediction;
   prediction.x = position.x + (velocity.x * speed);
   prediction.y = position.y + (velocity.y * speed);
@@ -101,7 +101,7 @@ void HauntedGraveyard::Player::apply_bounds(Area *bounds) {
   }
 }
 
-void HauntedGraveyard::Player::apply_solid(Area *solid) {
+void HauntedGraveyard::Player::apply_solid(HauntedGraveyard::core::Area2D *solid) {
   psyqo::Vec2 prediction;
   prediction.x = position.x + (velocity.x * speed);
   prediction.y = position.y + (velocity.y * speed);
