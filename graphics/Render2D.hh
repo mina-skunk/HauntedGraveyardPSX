@@ -14,6 +14,7 @@ class Camera2D;
 class Sprite;
 class TileMap;
 class BigSprite;
+class Pixel;
 /**
  * Handles generating primatives / framgments for objects in 2d space
  */
@@ -27,6 +28,7 @@ public:
   static void draw_sprite(HauntedGraveyard::graphics::Sprite *sprite);
   static void draw_tilemap(HauntedGraveyard::graphics::TileMap *tilemap);
   static void draw_bigsprite(HauntedGraveyard::graphics::BigSprite *sprite);
+  static void draw_pixel(HauntedGraveyard::graphics::Pixel *pixel);
   static void draw_background(psyqo::Color color);
   static void finish_drawing();
 

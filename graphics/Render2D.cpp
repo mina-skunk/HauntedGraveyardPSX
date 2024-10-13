@@ -4,6 +4,7 @@
 #include "Sprite.hh"
 #include "BigSprite.hh"
 #include "TileMap.hh"
+#include "Pixel.hh"
 #include "psyqo/primitives/common.hh"
 
 psyqo::GPU *HauntedGraveyard::graphics::Render2D::gpu;
@@ -88,10 +89,18 @@ void HauntedGraveyard::graphics::Render2D::draw_bigsprite(HauntedGraveyard::grap
   // gpu->chain(*fragment);
 }
 
+void HauntedGraveyard::graphics::Render2D::draw_pixel(HauntedGraveyard::graphics::Pixel *pixel) {
+  psyqo::Vec2 camera_space_position = get_relative_position(pixel->position);
+  auto fragment = pixel->get_fragment(gpu->getParity());
+  fragment->primitive.position.x = camera_space_position.x.integer();
+  fragment->primitive.position.y = camera_space_position.y.integer();
+  gpu->chain(*fragment);
+}
+
 void HauntedGraveyard::graphics::Render2D::draw_background(psyqo::Color color) {
   gpu->getNextClear(background_fragments[gpu->getParity()].primitive, color);
-  ordering_tables[gpu->getParity()].insert(background_fragments[gpu->getParity()], MAX_Z);
-  // gpu->chain(background_fragments[gpu->getParity()]);
+  // ordering_tables[gpu->getParity()].insert(background_fragments[gpu->getParity()], MAX_Z);
+  gpu->chain(background_fragments[gpu->getParity()]);
 }
 
 psyqo::Vec2 HauntedGraveyard::graphics::Render2D::get_relative_position(psyqo::Vec2 world_space_position) {

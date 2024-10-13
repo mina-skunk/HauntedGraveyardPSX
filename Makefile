@@ -13,6 +13,7 @@ graphics/Camera2D.cpp \
 graphics/Sprite.cpp \
 graphics/TexturePage.cpp \
 graphics/BigSprite.cpp \
+graphics/Pixel.cpp \
 graphics/TileMap.cpp \
 graphics/UI/RenderUI.cpp \
 graphics/UI/Button.cpp \
@@ -25,6 +26,7 @@ SplashScene.cpp \
 TitleScene.cpp \
 LevelScene.cpp \
 Level1EntranceScene.cpp \
+PointDemoScene.cpp \
 GameApp.cpp \
 main.cpp
 

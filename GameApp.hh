@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Level1EntranceScene.hh"
+#include "PointDemoScene.hh"
 #include "SplashScene.hh"
 #include "TitleScene.hh"
 #include "psyqo/application.hh"
@@ -21,7 +22,7 @@ public:
   static psyqo::SimplePad input;
   static psyqo::CDRomDevice cdrom;
   SplashScene first_scene;
-  Level1EntranceScene debug_scene;
+  PointDemoScene debug_scene;
 
 private:
   bool initialized = false;

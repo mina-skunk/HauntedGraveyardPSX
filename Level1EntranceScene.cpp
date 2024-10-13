@@ -127,6 +127,12 @@ void HauntedGraveyard::Level1EntranceScene::update() {
   if (keys == 1 && gate.open && exit.check_overlap({player.position, {16.0_fp, 16.0_fp}})) {
     pushScene(&next_scene);
   }
+
+  // update UI
+  eastl::fixed_string<char, 3> key_progress_string;
+  fsprintf(key_progress_string, "%d/1", keys);
+  hud.key_progress.text = key_progress_string;
+
 }
 
 void HauntedGraveyard::Level1EntranceScene::draw() {
@@ -152,9 +158,6 @@ void HauntedGraveyard::Level1EntranceScene::draw() {
 
   // HUD
   HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud.key_icon);
-  eastl::fixed_string<char, 3> key_progress_string;
-  fsprintf(key_progress_string, "%d/1", keys);
-  hud.key_progress.text = key_progress_string;
   HauntedGraveyard::graphics::UI::RenderUI::draw_label(&hud.key_progress);
 
   if (show_text_box) {
