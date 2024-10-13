@@ -1,8 +1,8 @@
 
-#define level1_map_WIDTH 20
-#define level1_map_HEIGHT 24
+#define level1_map_ground_WIDTH 20
+#define level1_map_ground_HEIGHT 24
 
-const unsigned char level1_map[] = {
+const unsigned char level1_map_ground[] = {
     36, 33, 34, 34, 34, 34, 34, 34, 34, 5, 37, 4, 34, 34, 34, 34, 34, 34, 35, 36, 
     36, 36, 36, 36, 36, 36, 36, 36, 36, 17, 37, 19, 36, 36, 36, 36, 36, 36, 36, 36, 
     36, 36, 36, 36, 36, 36, 36, 36, 36, 17, 37, 19, 36, 36, 36, 36, 36, 36, 36, 36, 

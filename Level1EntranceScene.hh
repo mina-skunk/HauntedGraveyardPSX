@@ -9,7 +9,7 @@
 #include "core/Area.hh"
 #include "graphics/Camera2D.hh"
 #include "graphics/TileMap.hh"
-#include "level1_map.h"
+#include "level1_map_ground.h"
 #include "level1_map_detail.h"
 #include "level1_map_surface.h"
 #include "psyqo/fixed-point.hh"
@@ -39,17 +39,17 @@ private:
       {{.x = 0.0_fp, .y = 0.0_fp},
        {.col = 8, .row = 0},
        6,
-       {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
-       level1_map},
+       {.w = level1_map_ground_WIDTH, .h = level1_map_ground_HEIGHT},
+       level1_map_ground},
       {{.x = 0.0_fp, .y = 0.0_fp},
        {.col = 8, .row = 0},
        5,
-       {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
+       {.w = level1_map_ground_WIDTH, .h = level1_map_ground_HEIGHT},
        level1_map_detail},
       {{.x = 0.0_fp, .y = 0.0_fp},
        {.col = 8, .row = 0},
        4,
-       {.w = level1_map_WIDTH, .h = level1_map_HEIGHT},
+       {.w = level1_map_ground_WIDTH, .h = level1_map_ground_HEIGHT},
        level1_map_surface}};
   HauntedGraveyard::GraveKeeper grave_keeper = {
       {.x = 128.0_fp, .y = 240.0_fp},

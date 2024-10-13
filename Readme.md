@@ -119,9 +119,13 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 
 `cd .\tools\psx-conv\`  
 `npm i`  
-`node .\index.js tilemap ..\..\resources\Level1EntranceMap.tmx --name level1_map --layer 0 ..\..\level1_map.h`  
+`node .\index.js tilemap ..\..\resources\Level1EntranceMap.tmx --name level2_map_ground --layer 0 ..\..\level1_map_ground.h`  
 `node .\index.js tilemap ..\..\resources\Level1EntranceMap.tmx --name level1_map_detail --layer 1 ..\..\level1_map_detail.h`  
 `node .\index.js tilemap ..\..\resources\Level1EntranceMap.tmx --name level1_map_surface --layer 2 ..\..\level1_map_surface.h`  
+
+`node .\index.js tilemap ..\..\resources\Level2GraveyardMap.tmx --name level2_map_ground --layer 0 ..\..\level2_map_ground.h`  
+`node .\index.js tilemap ..\..\resources\Level2GraveyardMap.tmx --name level2_map_detail --layer 1 ..\..\level2_map_detail.h`  
+`node .\index.js tilemap ..\..\resources\Level2GraveyardMap.tmx --name level2_map_surface --layer 2 ..\..\level2_map_surface.h`  
 
 ## Publish
 

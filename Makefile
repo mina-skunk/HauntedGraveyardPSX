@@ -27,6 +27,7 @@ TitleScene.cpp \
 LevelScene.cpp \
 Level1EntranceScene.cpp \
 PointDemoScene.cpp \
+Level2GraveyardScene.cpp \
 GameApp.cpp \
 main.cpp
 
