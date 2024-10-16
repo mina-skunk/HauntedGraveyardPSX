@@ -1,7 +1,10 @@
 #include "Level2GraveyardScene.hh"
 
+#include <EASTL/fixed_string.h>
+
 #include "GameApp.hh"
 #include "psyqo/simplepad.hh"
+#include "psyqo/xprintf.h"
 #include "steve.h"
 #include "tileset.h"
 #include "ui.h"
@@ -45,7 +48,16 @@ void HauntedGraveyard::Level2GraveyardScene::teardown(Scene::TearDownReason reas
   HauntedGraveyard::GameApp::input.setOnEvent(nullptr);
 }
 
-void HauntedGraveyard::Level2GraveyardScene::update() {}
+void HauntedGraveyard::Level2GraveyardScene::update() {
+  // player
+  player.update();
+  // camera
+  camera.follow(player.position);
+  // update UI
+  eastl::fixed_string<char, 3> key_progress_string;
+  fsprintf(key_progress_string, "%d/3", keys);
+  hud.key_progress.text = key_progress_string;
+}
 
 void HauntedGraveyard::Level2GraveyardScene::draw() {
   // Tilemap
@@ -56,4 +68,11 @@ void HauntedGraveyard::Level2GraveyardScene::draw() {
   // Player
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.bottom_sprite);
   HauntedGraveyard::graphics::Render2D::draw_sprite(&player.top_sprite);
+
+  HauntedGraveyard::graphics::Render2D::finish_drawing();
+
+  // HUD
+  HauntedGraveyard::graphics::UI::RenderUI::draw_image(&hud.key_icon);
+  HauntedGraveyard::graphics::UI::RenderUI::draw_label(&hud.key_progress);
+
 }

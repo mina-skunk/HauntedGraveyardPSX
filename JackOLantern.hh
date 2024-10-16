@@ -10,7 +10,7 @@ namespace HauntedGraveyard {
 class JackOLantern : public HauntedGraveyard::core::Area2D {
 public:
   bool has_key = false;
-  HauntedGraveyard::graphics::Sprite sprite = {{0.0_fp, 0.0_fp}, {.col = 8, .row = 0}, 4};
+  HauntedGraveyard::graphics::Sprite sprite = {position, {.col = 8, .row = 0}, 4};
   JackOLantern(psyqo::Vec2 position) : HauntedGraveyard::core::Area2D(position, {16.0_fp, 16.0_fp}) {
     sprite.position = position;
     sprite.uv.u = 0;
