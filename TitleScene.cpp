@@ -45,9 +45,7 @@ void HauntedGraveyard::TitleScene::start(Scene::StartReason reason) {
     }
   });
 
-#ifndef NO_CD
   HauntedGraveyard::system::SimpleCDAudio::play(&HauntedGraveyard::GameApp::cdrom, TITLE_TRACK, true);
-#endif
 }
 
 void HauntedGraveyard::TitleScene::frame() {

@@ -12,6 +12,7 @@
 #include "psyqo/vector.hh"
 #include "psyqo/xprintf.h"
 #include "steve.h"
+#include "system/SimpleCDAudio.hh"
 #include "tileset.h"
 #include "ui.h"
 
@@ -67,6 +68,8 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
     }
   });
 
+  HauntedGraveyard::system::SimpleCDAudio::play(&HauntedGraveyard::GameApp::cdrom, TITLE_TRACK, true);
+
   // init level
   HauntedGraveyard::graphics::Render2D::set_camera(&camera);
   player.position = spawn_point;
@@ -75,6 +78,8 @@ void HauntedGraveyard::Level1EntranceScene::start(Scene::StartReason reason) {
 void HauntedGraveyard::Level1EntranceScene::teardown(Scene::TearDownReason reason) {
   // clear input
   HauntedGraveyard::GameApp::input.setOnEvent(nullptr);
+
+  HauntedGraveyard::system::SimpleCDAudio::stop(&HauntedGraveyard::GameApp::cdrom);
 }
 
 void HauntedGraveyard::Level1EntranceScene::update() {

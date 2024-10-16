@@ -103,7 +103,8 @@ Haunted Graveyard is a top-down 2D adventure where players control Alex, a chara
 
 ### Audio
 
-`ffmpeg -i '.\resources\Artur Aravidi - Spooky Halloween Cartoon.mp3.mp3' -acodec pcm_s16le -ac 2 -ar 44100 .\audio_tracks\spooky_halloween_cartoon.wav`  
+`ffmpeg -i '.\resources\Artur Aravidi - Spooky Halloween Cartoon.mp3' -acodec pcm_s16le -ac 2 -ar 44100 .\audio_tracks\spooky_halloween_cartoon.wav`  
+`ffmpeg -i '.\resources\Alex-Productions - Instrumental Halloween music _ Freaky Halloween.mp3' -acodec pcm_s16le -ac 2 -ar 44100 .\audio_tracks\freaky_halloween.wav`  
 
 ### Image
 

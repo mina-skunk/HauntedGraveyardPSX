@@ -17,6 +17,8 @@
 
 using namespace psyqo::fixed_point_literals;
 
+#define GRAVEYARD_TRACK 3
+
 namespace HauntedGraveyard {
 /**
  * Level 1

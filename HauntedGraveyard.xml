@@ -13,4 +13,5 @@
     </directory_tree>
   </track>
   <track type="audio" source="audio_tracks/spooky_halloween_cartoon.wav" />
+  <track type="audio" source="audio_tracks/freaky_halloween.wav" />
 </iso_project>
