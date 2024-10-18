@@ -6,6 +6,7 @@ namespace HauntedGraveyard::system {
   class SimpleCDAudio {
     public:
       static bool is_playing;
+      static bool is_stopping;
       /**
       * Play CD track
       * @param track numbere to play
