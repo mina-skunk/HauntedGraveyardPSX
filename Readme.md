@@ -1,5 +1,7 @@
 # Haunted Graveyard
 
+-- postponed --
+
 This is an attempt to make a PSX game sprint for Halloween.
 
 |          |                             |
